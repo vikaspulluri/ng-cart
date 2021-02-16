@@ -1,0 +1,25 @@
+{
+  "npmScope": "tmo-assignment",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "projects": {
+    "tmo-assignment": {
+      "tags": []
+    },
+    "tmo-assignment-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "tmo-assignment"
+      ]
+    }
+  }
+}
