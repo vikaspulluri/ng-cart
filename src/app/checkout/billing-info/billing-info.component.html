@@ -1,0 +1,52 @@
+<aside>
+  <div class="checkout-container">
+    <div class="left">
+      <div class="image-container">
+        <img src="assets/images/price_change.svg" alt="Billing Info">
+      </div>
+    </div>
+    <div class="right">
+      <form [formGroup]="userForm" class="billing-form">
+        <h2>Billing Information</h2>
+
+        <mat-form-field>
+          <mat-label>First Name*</mat-label>
+          <input matInput formControlName="firstName" />
+          <mat-error>Please enter First name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Last Name*</mat-label>
+          <input matInput formControlName="lastName" />
+          <mat-error>Please enter Last name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email*</mat-label>
+          <input matInput formControlName="email" />
+          <mat-error>Please enter valid email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phone" />
+          <mat-error>Please enter valid phone number</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Address*</mat-label>
+          <textarea matInput formControlName="address"></textarea>
+          <mat-error>Please enter your address</mat-error>
+        </mat-form-field>
+      </form>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="userForm.invalid"
+        (click)="purchase()"
+      >
+        Purchase
+      </button>
+    </div>
+  </div>
+</aside>
