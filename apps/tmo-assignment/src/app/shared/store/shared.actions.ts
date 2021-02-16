@@ -1,4 +1,4 @@
-import { createAction } from "@ngrx/store";
+import { createAction } from '@ngrx/store';
 
 export const SHOW_PROGRESS_BAR = '[Shared] ShowProgressBar';
 export const HIDE_PROGRESS_BAR = '[Shared] HideProgressBar';

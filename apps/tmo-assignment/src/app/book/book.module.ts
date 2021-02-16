@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
-import { BarRatingModule } from "ngx-bar-rating";
+import { BarRatingModule } from 'ngx-bar-rating';
 
 import * as fromBooks from './store/book.reducer';
 import { BookListComponent } from './book-list/book-list.component';
@@ -14,13 +14,8 @@ import { BookService } from './book.service';
 import { FormsModule } from '@angular/forms';
 import { CartModule } from '../cart/cart.module';
 
-
 @NgModule({
-  declarations: [
-    BookListComponent,
-    BookViewComponent,
-    BookCardComponent
-  ],
+  declarations: [BookListComponent, BookViewComponent, BookCardComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,14 +23,9 @@ import { CartModule } from '../cart/cart.module';
     BooksRoutingModule,
     SearchModule,
     BarRatingModule,
-    StoreModule.forFeature(fromBooks.featureKey, fromBooks.reducer)
+    StoreModule.forFeature(fromBooks.featureKey, fromBooks.reducer),
   ],
-  exports: [
-    BookListComponent,
-    BookViewComponent
-  ],
-  providers: [
-    BookService
-  ]
+  exports: [BookListComponent, BookViewComponent],
+  providers: [BookService],
 })
-export class BookModule { }
+export class BookModule {}

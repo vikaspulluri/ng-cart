@@ -1,4 +1,9 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
@@ -14,19 +19,16 @@ describe('SearchBarComponent', () => {
   let store: MockStore;
   let router: Router;
   let location: Location;
-  let initialState = {
+  const initialState = {
     books: {},
-    search: {}
-  }
+    search: {},
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchBarComponent ],
+      declarations: [SearchBarComponent],
       imports: [BrowserAnimationsModule, MaterialModule],
-      providers: [
-        provideMockStore({initialState})
-      ]
-    })
-    .compileComponents();
+      providers: [provideMockStore({ initialState })],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -51,5 +53,5 @@ describe('SearchBarComponent', () => {
     tick(500);
     fixture.detectChanges();
     expect(storeDispatchSpy).toHaveBeenCalled();
-  }))
+  }));
 });

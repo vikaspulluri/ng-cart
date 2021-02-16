@@ -21,12 +21,9 @@ describe('AppComponent', () => {
         BrowserAnimationsModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot(),
-        CoreModule
+        CoreModule,
       ],
-      declarations: [
-        AppComponent,
-        CoreComponent
-      ],
+      declarations: [AppComponent, CoreComponent],
     }).compileComponents();
 
     router = TestBed.inject(Router);
@@ -46,15 +43,15 @@ describe('AppComponent', () => {
 
   it('should load the lazy modules: cart', () => {
     router.navigate(['/cart']);
-  })
+  });
   it('should load the lazy modules: user', () => {
     router.navigate(['/user']);
-  })
+  });
   it('should load the lazy modules: checkout', () => {
     router.navigate(['/checkout']);
-  })
+  });
 
   it('should load the lazy modules: checkout', () => {
     router.navigate(['/book']);
-  })
+  });
 });

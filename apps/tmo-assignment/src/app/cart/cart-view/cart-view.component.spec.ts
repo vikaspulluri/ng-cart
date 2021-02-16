@@ -17,28 +17,23 @@ describe('CartViewComponent', () => {
   let fixture: ComponentFixture<CartViewComponent>;
   let store: MockStore;
   const router = {
-    navigate: jasmine.createSpy('navigate')
+    navigate: jasmine.createSpy('navigate'),
   };
-  let initialState = {
+  const initialState = {
     cart: {
-      items: [{quantity: 2, product: mockBooks[0]}]
-    }
-  }
+      items: [{ quantity: 2, product: mockBooks[0] }],
+    },
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartViewComponent ],
-      imports: [
-        RouterTestingModule,
-        MaterialModule,
-        FormsModule
-      ],
+      declarations: [CartViewComponent],
+      imports: [RouterTestingModule, MaterialModule, FormsModule],
       providers: [
-        provideMockStore({initialState}),
-        {provide: Router, useValue: router}
-      ]
-    })
-    .compileComponents();
+        provideMockStore({ initialState }),
+        { provide: Router, useValue: router },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -56,40 +51,40 @@ describe('CartViewComponent', () => {
     const storeDispatchSpy = spyOn(store, 'dispatch');
     component.incrementQuantity('bookId');
     expect(storeDispatchSpy).toHaveBeenCalledTimes(1);
-  })
+  });
 
   it('should not increment quantity', () => {
     const storeDispatchSpy = spyOn(store, 'dispatch');
     component.incrementQuantity('');
     expect(storeDispatchSpy).not.toHaveBeenCalled();
-  })
+  });
 
   it('should decrement item quantity', () => {
     const storeDispatchSpy = spyOn(store, 'dispatch');
     component.decrementQuantity('bookId');
     expect(storeDispatchSpy).toHaveBeenCalledTimes(1);
-  })
+  });
 
   it('should not decrement quantity', () => {
     const storeDispatchSpy = spyOn(store, 'dispatch');
     component.decrementQuantity('');
     expect(storeDispatchSpy).not.toHaveBeenCalled();
-  })
+  });
 
   it('should navigate to checkout page', () => {
     component.proceedToCheckout();
-    expect(router.navigate).toHaveBeenCalledOnceWith(['/checkout'])
-  })
+    expect(router.navigate).toHaveBeenCalledOnceWith(['/checkout']);
+  });
 
   it('should not remove item from the cart', () => {
     const storeDispatchSpy = spyOn(store, 'dispatch');
     component.removeItem('');
     expect(storeDispatchSpy).not.toHaveBeenCalled();
-  })
+  });
 
   it('should remove item from the cart', () => {
     const storeDispatchSpy = spyOn(store, 'dispatch');
     component.removeItem('bookId');
     expect(storeDispatchSpy).toHaveBeenCalledTimes(1);
-  })
+  });
 });

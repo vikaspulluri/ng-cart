@@ -58,22 +58,22 @@
 </ng-template>
 
 <ng-template #mobileMenu let-navItems;>
-    <mat-list>
-      <mat-list-item
-        *ngFor="let item of navItems"
-        [routerLink]="item.path"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
+  <mat-list>
+    <mat-list-item
+      *ngFor="let item of navItems"
+      [routerLink]="item.path"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <mat-icon
+        [matBadge]="item.notificationCount"
+        matBadgeColor="primary"
+        matBadgePosition="after"
+        matBadgeSize="medium"
+        mat-list-icon
+        >{{ item.icon }}</mat-icon
       >
-        <mat-icon
-          [matBadge]="item.notificationCount"
-          matBadgeColor="primary"
-          matBadgePosition="after"
-          matBadgeSize="medium"
-          mat-list-icon
-          >{{ item.icon }}</mat-icon
-        >
-        <div class="label">{{ item.label }}</div>
-      </mat-list-item>
-    </mat-list>
-  </ng-template>
+      <div class="label">{{ item.label }}</div>
+    </mat-list-item>
+  </mat-list>
+</ng-template>

@@ -33,9 +33,7 @@
               "apps/tmo-assignment/src/favicon.ico",
               "apps/tmo-assignment/src/assets"
             ],
-            "styles": [
-              "apps/tmo-assignment/src/styles.scss"
-            ],
+            "styles": ["apps/tmo-assignment/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -110,9 +108,7 @@
               "apps/tmo-assignment/tsconfig.app.json",
               "apps/tmo-assignment/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -149,9 +145,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/tmo-assignment-e2e/tsconfig.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

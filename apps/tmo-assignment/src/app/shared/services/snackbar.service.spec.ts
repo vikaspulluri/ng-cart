@@ -12,7 +12,7 @@ describe('SnackbarService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [MatSnackBar, Overlay],
-      imports: [BrowserAnimationsModule, MatSnackBarModule]
+      imports: [BrowserAnimationsModule, MatSnackBarModule],
     });
     snackbar = TestBed.inject(MatSnackBar);
     service = new SnackbarService(snackbar);
@@ -24,5 +24,5 @@ describe('SnackbarService', () => {
 
   it('should open snackbar', () => {
     service.open('some message!');
-  })
+  });
 });

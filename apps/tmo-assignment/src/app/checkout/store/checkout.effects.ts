@@ -18,33 +18,39 @@ export class CheckoutEffects {
   purchase$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CheckoutActions.purchase.type),
-      switchMap(({user, items }) => of(
-        UserActions.addItemsToCollection({ user, items, orderId: randomKey() }),
-        UserActions.addAddress({ user: user }),
-        CartActions.clearCart(),
-        CheckoutActions.purchaseSuccess()
-      )),
+      switchMap(({ user, items }) =>
+        of(
+          UserActions.addItemsToCollection({
+            user,
+            items,
+            orderId: randomKey(),
+          }),
+          UserActions.addAddress({ user }),
+          CartActions.clearCart(),
+          CheckoutActions.purchaseSuccess()
+        )
+      ),
       catchError(async (error) => CheckoutActions.purchaseFailure())
     )
   );
 
-  purchaseSuccess$ = createEffect(() => 
-      this.actions$.pipe(
-          ofType(CheckoutActions.purchaseSuccess.type),
-          tap(() => this.snackbarService.open(MESSAGES.PURCHASE_SUCCESS)),
-          switchMap(async () => SharedActions.hideProgressBar()),
-          tap(() => this.router.navigate(['/user']))
-      )
-  )
+  purchaseSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CheckoutActions.purchaseSuccess.type),
+      tap(() => this.snackbarService.open(MESSAGES.PURCHASE_SUCCESS)),
+      switchMap(async () => SharedActions.hideProgressBar()),
+      tap(() => this.router.navigate(['/user']))
+    )
+  );
 
-  purchaseFailure$ = createEffect(() => 
-      this.actions$.pipe(
-          ofType(CheckoutActions.purchaseFailure.type),
-          tap(() => this.snackbarService.open(MESSAGES.PURCHASE_FAILURE)),
-          switchMap(async () => SharedActions.hideProgressBar()),
-          tap(() => this.router.navigate(['/user']))
-      )
-  )
+  purchaseFailure$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CheckoutActions.purchaseFailure.type),
+      tap(() => this.snackbarService.open(MESSAGES.PURCHASE_FAILURE)),
+      switchMap(async () => SharedActions.hideProgressBar()),
+      tap(() => this.router.navigate(['/user']))
+    )
+  );
 
   constructor(
     private actions$: Actions,

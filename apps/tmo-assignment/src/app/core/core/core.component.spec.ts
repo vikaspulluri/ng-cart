@@ -1,4 +1,9 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
@@ -19,17 +24,10 @@ describe('CoreComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoreComponent, SidenavBarComponent ],
-      providers: [
-        provideMockStore({})
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule,
-        RouterTestingModule
-      ]
-    })
-    .compileComponents();
+      declarations: [CoreComponent, SidenavBarComponent],
+      providers: [provideMockStore({})],
+      imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -44,24 +42,24 @@ describe('CoreComponent', () => {
   });
 
   it('should update the shared state', fakeAsync(() => {
-    let state = {
+    const state = {
       shared: {
-        progressBar: false
-      }
-    }
+        progressBar: false,
+      },
+    };
     store.setState(state);
     tick();
     expect(component.progressbar).toBeUndefined();
-  }))
+  }));
 
   it('should not map quantity with object', () => {
     const items = [
       {
         quantity: 1,
-        product: mockBooks[0]
-      }
+        product: mockBooks[0],
+      },
     ];
     const quantityMap = mapQuantityWithObject(items);
     expect(quantityMap).toBeTruthy();
-  })
+  });
 });

@@ -12,29 +12,25 @@ describe('BookCardComponent', () => {
   let fixture: ComponentFixture<BookCardComponent>;
   let store: MockStore;
   let location: Location;
-  let initialState = {
+  const initialState = {
     books: {
-      items: mockBooks
-    }
-  }
+      items: mockBooks,
+    },
+  };
 
   const router = {
-    navigate: jasmine.createSpy('navigate')
+    navigate: jasmine.createSpy('navigate'),
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookCardComponent ],
+      declarations: [BookCardComponent],
       providers: [
-        provideMockStore({initialState}),
-        {provide: Router, useValue: router}
+        provideMockStore({ initialState }),
+        { provide: Router, useValue: router },
       ],
-      imports: [
-        RouterTestingModule,
-        MaterialModule
-      ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule, MaterialModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -51,7 +47,7 @@ describe('BookCardComponent', () => {
   });
 
   it('should redirect to books page', fakeAsync(() => {
-    let id = component.book.id;
+    const id = component.book.id;
     component.viewBook(id);
     expect(router.navigate).toHaveBeenCalledWith(['/books', id]);
   }));
@@ -67,5 +63,5 @@ describe('BookCardComponent', () => {
     component.buy();
     expect(dispatchSpy).toHaveBeenCalledTimes(1);
     expect(router.navigate).toHaveBeenCalledWith(['/checkout']);
-  }))
+  }));
 });

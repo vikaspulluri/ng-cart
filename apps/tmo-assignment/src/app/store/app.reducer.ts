@@ -5,10 +5,9 @@ import { State as UserState } from '../user/store/user.reducer';
 import { State as SharedState } from '../shared/store/shared.reducer';
 
 export interface AppState {
-    shared: SharedState;
-    search: SearchState; // recent, string, results
-    books: BookState;
-    user: UserState;
-    cart: CartState;
+  shared: SharedState;
+  search: SearchState; // recent, string, results
+  books: BookState;
+  user: UserState;
+  cart: CartState;
 }
-

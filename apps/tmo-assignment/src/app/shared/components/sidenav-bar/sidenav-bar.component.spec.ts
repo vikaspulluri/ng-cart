@@ -1,4 +1,9 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
@@ -13,24 +18,22 @@ describe('SidenavBarComponent', () => {
   let component: SidenavBarComponent;
   let fixture: ComponentFixture<SidenavBarComponent>;
   let store: MockStore;
-  let initialState = {
+  const initialState = {
     cart: {
-      items: []
+      items: [],
     },
     user: {
       collections: [],
-      addresses: []
-    }
-  }
+      addresses: [],
+    },
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidenavBarComponent ],
+      declarations: [SidenavBarComponent],
       imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
-      providers: [
-        provideMockStore({}),
-      ]
-    })
+      providers: [provideMockStore({})],
+    });
     store = TestBed.inject(MockStore);
     TestBed.compileComponents();
   });
@@ -46,33 +49,28 @@ describe('SidenavBarComponent', () => {
   });
 
   it('should update the cart state', () => {
-    let state = {
+    const state = {
       cart: {
-        items: [
-          {quantity: 1, product: mockBooks[0]}
-        ]
-      }
-    }
+        items: [{ quantity: 1, product: mockBooks[0] }],
+      },
+    };
 
     store.setState(state);
 
     expect(component.navItems).toBeTruthy();
-  })
+  });
 
   it('should update the collections state', () => {
-    let state = {
+    const state = {
       user: {
         collections: [
           {
-            collection: [{quantity: 1, product: mockBooks[0]}]
-          }
-          
-        ]
-      }
-    }
+            collection: [{ quantity: 1, product: mockBooks[0] }],
+          },
+        ],
+      },
+    };
     store.setState(state);
     expect(component.navItems).toBeTruthy();
-  })
-
-  
+  });
 });

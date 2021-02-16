@@ -17,13 +17,9 @@ import * as fromSearchEffects from './store/search.effects';
     FormsModule,
     SharedModule,
     StoreModule.forFeature(fromSearch.featureKey, fromSearch.reducer),
-    EffectsModule.forFeature([fromSearchEffects.SearchEffects])
+    EffectsModule.forFeature([fromSearchEffects.SearchEffects]),
   ],
-  exports: [
-    SearchBarComponent
-  ],
-  providers: [
-    SearchService
-  ]
+  exports: [SearchBarComponent],
+  providers: [SearchService],
 })
-export class SearchModule { }
+export class SearchModule {}

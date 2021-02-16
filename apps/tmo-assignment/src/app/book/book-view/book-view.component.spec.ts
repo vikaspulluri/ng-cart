@@ -16,40 +16,34 @@ describe('BookViewComponent', () => {
   let fixture: ComponentFixture<BookViewComponent>;
   let store: MockStore;
 
-  let initialState = {
+  const initialState = {
     books: {
-      list: mockBooks
+      list: mockBooks,
     },
     cart: {
-      items: [
-        {quantity: 1, product: mockBooks[0]}
-      ]
-    }
-  }
+      items: [{ quantity: 1, product: mockBooks[0] }],
+    },
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookViewComponent ],
-      imports: [
-        MaterialModule,
-        FormsModule
-      ],
+      declarations: [BookViewComponent],
+      imports: [MaterialModule, FormsModule],
       providers: [
-        provideMockStore({initialState}),
+        provideMockStore({ initialState }),
         {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
               data: {
                 id: 'bookId',
-                book: initialState.books.list[0]
-              }
-            }
-          }
-        }
-      ]
-    })
-    .compileComponents();
+                book: initialState.books.list[0],
+              },
+            },
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -67,18 +61,20 @@ describe('BookViewComponent', () => {
   it('should update the state with no items in cart', () => {
     const state = {
       cart: {
-        items: [{quantity: 1, product: {...mockBooks[0], id: 'differentBookId'}}]
-      }
-    }
+        items: [
+          { quantity: 1, product: { ...mockBooks[0], id: 'differentBookId' } },
+        ],
+      },
+    };
     store.setState(state);
     expect(component.quantity).toBe(1);
-  })
+  });
 
   it('should update the state with no cart', () => {
     const state = {
-      cart: null
-    }
+      cart: null,
+    };
     store.setState(state);
     expect(component.quantity).toBe(1);
-  })
+  });
 });

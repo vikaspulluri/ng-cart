@@ -21,28 +21,24 @@ describe('BillingInfoComponent', () => {
   let store: MockStore;
   let router: Router;
   let snackbar: SnackbarService;
-  let initialState = {
+  const initialState = {
     user: {
       collections: [],
       addresses: [],
     },
-    cart: {}
-  }
+    cart: {},
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BillingInfoComponent ],
-      providers: [
-        provideMockStore({initialState}),
-        SnackbarService,
-      ],
+      declarations: [BillingInfoComponent],
+      providers: [provideMockStore({ initialState }), SnackbarService],
       imports: [
         RouterTestingModule,
         BrowserAnimationsModule,
         MaterialModule,
-        ReactiveFormsModule
-      ]
-    })
-    .compileComponents();
+        ReactiveFormsModule,
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -59,33 +55,30 @@ describe('BillingInfoComponent', () => {
   });
 
   it('should update the state', () => {
-    let state = {
+    const state = {
       cart: {
-        items: [
-          {quantity: 1, product: mockBooks[0]}
-        ]
-      }
-    }
+        items: [{ quantity: 1, product: mockBooks[0] }],
+      },
+    };
     store.setState(state);
     expect(component.items[0].quantity).toEqual(1);
-  })
+  });
 
   it('should not purchase the cart items', () => {
-    let storeDispatchSpy = spyOn(store, 'dispatch');
+    const storeDispatchSpy = spyOn(store, 'dispatch');
     component.purchase();
     expect(storeDispatchSpy).not.toHaveBeenCalled();
-  })
+  });
 
   it('should purchase the cart items', () => {
-    let storeDispatchSpy = spyOn(store, 'dispatch');
-    component.userForm.controls['firstName'].setValue('Vikas');
-    component.userForm.controls['lastName'].setValue('Pulluri');
-    component.userForm.controls['email'].setValue('Vikas@gmail.com');
-    component.userForm.controls['phone'].setValue(1234567890);
-    component.userForm.controls['address'].setValue('Vikas address');
+    const storeDispatchSpy = spyOn(store, 'dispatch');
+    component.userForm.controls.firstName.setValue('Vikas');
+    component.userForm.controls.lastName.setValue('Pulluri');
+    component.userForm.controls.email.setValue('Vikas@gmail.com');
+    component.userForm.controls.phone.setValue(1234567890);
+    component.userForm.controls.address.setValue('Vikas address');
     component.purchase();
     expect(component.userForm.valid).toBeTrue();
     expect(storeDispatchSpy).toHaveBeenCalled();
-  })
-
+  });
 });

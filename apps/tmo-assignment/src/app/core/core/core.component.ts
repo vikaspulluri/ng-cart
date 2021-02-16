@@ -6,26 +6,26 @@ import * as fromApp from '../../store/app.reducer';
 @Component({
   selector: 'app-core',
   templateUrl: './core.component.html',
-  styleUrls: ['./core.component.scss']
+  styleUrls: ['./core.component.scss'],
 })
 export class CoreComponent implements OnInit, OnDestroy {
-
-  progressbar: boolean = false;
+  progressbar = false;
   subscriptions: Subscription[] = [];
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.store.select(state => state.shared).subscribe(state => {
-        if (state) {
-          this.progressbar = state.progressbar;
-        }
-      })
+      this.store
+        .select((state) => state.shared)
+        .subscribe((state) => {
+          if (state) {
+            this.progressbar = state.progressbar;
+          }
+        })
     );
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
-
 }

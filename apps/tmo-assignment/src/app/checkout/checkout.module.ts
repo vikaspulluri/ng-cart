@@ -7,7 +7,6 @@ import { SharedModule } from '../shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromCheckoutEffects from './store/checkout.effects';
 
-
 @NgModule({
   declarations: [BillingInfoComponent],
   imports: [
@@ -15,7 +14,7 @@ import * as fromCheckoutEffects from './store/checkout.effects';
     ReactiveFormsModule,
     SharedModule,
     EffectsModule.forFeature([fromCheckoutEffects.CheckoutEffects]),
-    CheckoutRoutingModule
-  ]
+    CheckoutRoutingModule,
+  ],
 })
-export class CheckoutModule { }
+export class CheckoutModule {}

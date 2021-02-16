@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { mockBooks } from '../../../../src/test/mocks';
+import { UserModule } from '../user.module';
 
 import { CollectionComponent } from './collection.component';
 
@@ -10,7 +11,7 @@ describe('CollectionComponent', () => {
   let fixture: ComponentFixture<CollectionComponent>;
   let store: MockStore;
 
-  let initialState = {
+  const initialState = {
     user: {
       collections: [
         {
@@ -19,28 +20,25 @@ describe('CollectionComponent', () => {
             firstName: 'Vikas',
             lastName: 'Pulluri',
             email: 'vik@gmail.com',
-            address: 'Some street'
+            address: 'Some street',
           },
           items: [
             {
               quantity: 1,
-              product: mockBooks[0]
-            }
-          ]
-        }
-      ]
-    }
-  }
+              product: mockBooks[0],
+            },
+          ],
+        },
+      ],
+    },
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CollectionComponent ],
+      declarations: [CollectionComponent],
       imports: [MaterialModule],
-      providers: [
-        provideMockStore({initialState})
-      ]
-    })
-    .compileComponents();
+      providers: [provideMockStore({ initialState })],
+    }).compileComponents();
   });
 
   beforeEach(() => {

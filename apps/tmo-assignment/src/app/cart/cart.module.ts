@@ -18,6 +18,6 @@ import { CartViewComponent } from './cart-view/cart-view.component';
     CartRoutingModule,
     StoreModule.forFeature(fromCart.featureKey, fromCart.reducer),
   ],
-  providers: []
+  providers: [],
 })
-export class CartModule { }
+export class CartModule {}

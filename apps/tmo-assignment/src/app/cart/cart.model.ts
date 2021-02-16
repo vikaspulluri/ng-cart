@@ -1,3 +1,3 @@
-import { Book } from "../book/book.model";
+import { Book } from '../book/book.model';
 
 export type CartItem = Book | undefined;

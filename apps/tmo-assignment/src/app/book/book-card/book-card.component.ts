@@ -9,26 +9,25 @@ import * as CartActions from '../../cart/store/cart.actions';
 @Component({
   selector: 'app-book-card',
   templateUrl: './book-card.component.html',
-  styleUrls: ['./book-card.component.scss']
+  styleUrls: ['./book-card.component.scss'],
 })
 export class BookCardComponent implements OnInit {
   @Input('book') book: Book;
-  @Input('mode') mode: string = 'light';
-  @Input('quantity') quantity?: number = 0;
-  constructor(private router: Router, private store: Store<fromApp.AppState>) { }
+  @Input('mode') mode = 'light';
+  @Input('quantity') quantity = 0;
+  constructor(private router: Router, private store: Store<fromApp.AppState>) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  viewBook(id: string) {
+  viewBook(id: string): void {
     this.router.navigate([`/books`, id]);
   }
 
-  addToCart() {
-    this.store.dispatch(CartActions.addItem({item: this.book}));
+  addToCart(): void {
+    this.store.dispatch(CartActions.addItem({ item: this.book }));
   }
 
-  buy() {
+  buy(): void {
     this.addToCart();
     this.router.navigate(['/checkout']);
   }

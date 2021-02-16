@@ -1,98 +1,98 @@
 .cart-container {
-    display: flex;
-    position: relative;
-    max-width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 1em;
-    .item-card {
-        max-width: 800px;
-        margin: 1em;
-        width: 100%;
-        @media screen and (max-width: 768px) {
-            max-width: 100%;
-            margin: 1em 0;
-            width: 80%;
-        }
-        .mat-card-header {
-            display: flex;
-            justify-content: flex-start;
-            padding: 1em 0;
-            @media screen and (max-width: 768px) {
-                display: block;
-            }
-        }
-    
-        .right {
-            position: absolute;
-            right: 1em;
-            top: .5em;
-            @media screen and (max-width: 768px) {
-                position: relative;
-                right: 0;
-                top: 0;
-                .mat-card-avatar {
-                    width: auto;
-                    height: auto;
-                    display: flex;
-                    justify-content: center;
-                }
-            }
-            .header-image img {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 50px;
-                height: 50px;
-                border: 1px solid #000;
-                @media screen and (max-width: 768px) {
-                    position: relative;
-                    width: auto;
-                    height: auto;
-                    max-width: 250px;
-                }
-            }
-        }
-    
-        .mat-card-title {
-            margin-bottom: 12px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 300px;
-            @media screen and (max-width: 768px) {
-                max-width: 100%;
-                text-align: center;
-            }
-        }
-        h4 {
-            font-weight: 700;
-            margin-bottom: 0;
-        }
-        .description {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-        }
+  display: flex;
+  position: relative;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1em;
+  .item-card {
+    max-width: 800px;
+    margin: 1em;
+    width: 100%;
+    @media screen and (max-width: 768px) {
+      max-width: 100%;
+      margin: 1em 0;
+      width: 80%;
+    }
+    .mat-card-header {
+      display: flex;
+      justify-content: flex-start;
+      padding: 1em 0;
+      @media screen and (max-width: 768px) {
+        display: block;
+      }
     }
 
-    .mat-card-actions {
-        display: flex;
+    .right {
+      position: absolute;
+      right: 1em;
+      top: 0.5em;
+      @media screen and (max-width: 768px) {
+        position: relative;
+        right: 0;
+        top: 0;
+        .mat-card-avatar {
+          width: auto;
+          height: auto;
+          display: flex;
+          justify-content: center;
+        }
+      }
+      .header-image img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
         @media screen and (max-width: 768px) {
-            justify-content: center;
+          position: relative;
+          width: auto;
+          height: auto;
+          max-width: 250px;
         }
-        .update-btns-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-left: 1em;
-            .mat-icon {
-                cursor: pointer;
-            }
-        }
+      }
     }
+
+    .mat-card-title {
+      margin-bottom: 12px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 300px;
+      @media screen and (max-width: 768px) {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+    h4 {
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+    .description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .mat-card-actions {
+    display: flex;
+    @media screen and (max-width: 768px) {
+      justify-content: center;
+    }
+    .update-btns-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 1em;
+      .mat-icon {
+        cursor: pointer;
+      }
+    }
+  }
 }

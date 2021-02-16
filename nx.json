@@ -17,9 +17,7 @@
     },
     "tmo-assignment-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "tmo-assignment"
-      ]
+      "implicitDependencies": ["tmo-assignment"]
     }
   }
 }

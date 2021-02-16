@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.46% </span>
+                <span class="strong">15.38% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/13</span>
+                <span class='fraction'>2/13</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/10</span>
+                <span class='fraction'>1/10</span>
             </div>
         
             
@@ -89,7 +89,8 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -120,23 +121,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from "@angular/router";
-import { of } from "rxjs";
-import { take, map, catchError } from "rxjs/operators";
-import { SnackbarService } from "../shared/services/snackbar.service";
-import { Book } from "./book.model";
-import { BookService } from "./book.service";
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
+import { of } from 'rxjs';
+import { take, map, catchError } from 'rxjs/operators';
+import { SnackbarService } from '../shared/services/snackbar.service';
+import { Book } from './book.model';
+import { BookService } from './book.service';
 import * as fromApp from '../store/app.reducer';
-import { Store } from "@ngrx/store";
+import { Store } from '@ngrx/store';
 import * as SharedActions from '../shared/store/shared.actions';
-import { MESSAGES } from "../core/core.constants";
+import { MESSAGES } from '../core/core.constants';
 &nbsp;
 @Injectable()
 export class BookResolverService implements Resolve&lt;Book | null&gt; {
 <span class="fstat-no" title="function not covered" >    resolve(</span>route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const id = <span class="cstat-no" title="statement not covered" >route.params['id'];</span>
+        const id = <span class="cstat-no" title="statement not covered" >route.params.id;</span>
 <span class="cstat-no" title="statement not covered" >        this.store.dispatch(SharedActions.showProgressBar());</span>
 <span class="cstat-no" title="statement not covered" >        return this.bookService.getBook(id).pipe(</span>
             take(1),
@@ -149,18 +151,19 @@ export class BookResolverService implements Resolve&lt;Book | null&gt; {
 <span class="cstat-no" title="statement not covered" >                this.store.dispatch(SharedActions.hideProgressBar());</span>
 <span class="cstat-no" title="statement not covered" >                return of(null);</span>
             })
-        )
+        );
     }
 &nbsp;
-    constructor(private bookService: BookService, private snackbarService: SnackbarService, private store: Store&lt;fromApp.AppState&gt;) {}
-}</pre></td></tr></table></pre>
+<span class="fstat-no" title="function not covered" >    constructor(private <span class="cstat-no" title="statement not covered" >b</span>ookService: B</span>ookService, private <span class="cstat-no" title="statement not covered" >snackbarService: S</span>nackbarService, private <span class="cstat-no" title="statement not covered" >store: S</span>tore&lt;fromApp.AppState&gt;) {}
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Feb 16 2021 17:36:15 GMT+0530 (India Standard Time)
+                at Tue Feb 16 2021 21:37:21 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

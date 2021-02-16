@@ -9,27 +9,27 @@ import { Collection } from '../user.model';
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
-  styleUrls: ['./collection.component.scss']
+  styleUrls: ['./collection.component.scss'],
 })
 export class CollectionComponent implements OnInit, OnDestroy {
-
   collections: Collection[] = [];
   trackByFn = trackByFn;
   subscriptions: Subscription[] = [];
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.store.select(state => state.user).subscribe(user => {
-        if (user && user.collections) {
-          this.collections = user.collections;
-        }
-      })
+      this.store
+        .select((state) => state.user)
+        .subscribe((user) => {
+          if (user && user.collections) {
+            this.collections = user.collections;
+          }
+        })
     );
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
-
 }

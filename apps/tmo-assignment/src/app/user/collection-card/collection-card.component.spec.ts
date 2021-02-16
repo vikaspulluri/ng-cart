@@ -9,21 +9,15 @@ describe('CollectionCardComponent', () => {
   let component: CollectionCardComponent;
   let fixture: ComponentFixture<CollectionCardComponent>;
   const router = {
-    navigate: jasmine.createSpy('navigate')
-  };;
-  
+    navigate: jasmine.createSpy('navigate'),
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CollectionCardComponent ],
-      imports: [
-        RouterTestingModule,
-        MaterialModule
-      ],
-      providers: [
-        {provide: Router, useValue: router}
-      ]
-    })
-    .compileComponents();
+      declarations: [CollectionCardComponent],
+      imports: [RouterTestingModule, MaterialModule],
+      providers: [{ provide: Router, useValue: router }],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -39,5 +33,5 @@ describe('CollectionCardComponent', () => {
   it('should redirect book details page', () => {
     component.viewItem('bookId');
     expect(router.navigate).toHaveBeenCalledTimes(1);
-  })
+  });
 });

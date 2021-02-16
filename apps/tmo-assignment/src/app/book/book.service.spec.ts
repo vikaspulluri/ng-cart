@@ -1,6 +1,9 @@
 import { HttpClient, HttpClientModule, HttpEvent } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BookService } from './book.service';
@@ -13,7 +16,11 @@ describe('BookService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [BookService],
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, HttpClientModule]
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        HttpClientModule,
+      ],
     });
     httpMock = TestBed.inject(HttpTestingController);
     service = TestBed.inject(BookService);
@@ -25,8 +32,8 @@ describe('BookService', () => {
   });
 
   it('should get the book details', () => {
-    service.getBook('somestring').subscribe(data => {
+    service.getBook('somestring').subscribe((data) => {
       expect(data).toBeTruthy();
-    })
-  })
+    });
+  });
 });

@@ -8,33 +8,38 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-book-view',
   templateUrl: './book-view.component.html',
-  styleUrls: ['./book-view.component.scss']
+  styleUrls: ['./book-view.component.scss'],
 })
 export class BookViewComponent implements OnInit, OnDestroy {
-
   id: string | null;
   book: Book | undefined;
   subscriptions: Subscription[] = [];
   quantity: number;
-  constructor(private route: ActivatedRoute, private store: Store<fromApp.AppState>) { }
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store<fromApp.AppState>
+  ) {}
 
   ngOnInit(): void {
-    this.book = this.route.snapshot.data['book'];
+    this.book = this.route.snapshot.data.book;
 
     this.subscriptions.push(
-      this.store.select(state => state.cart).subscribe(cart => {
-        if (cart && cart.items.length) {
-          let bookAddedToCart = cart.items.find(item => item?.product?.id === this.book?.id);
-          if (bookAddedToCart) {
-            this.quantity = bookAddedToCart.quantity;
+      this.store
+        .select((state) => state.cart)
+        .subscribe((cart) => {
+          if (cart && cart.items.length) {
+            const bookAddedToCart = cart.items.find(
+              (item) => item?.product?.id === this.book?.id
+            );
+            if (bookAddedToCart) {
+              this.quantity = bookAddedToCart.quantity;
+            }
           }
-        }
-      })
+        })
     );
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
-
 }

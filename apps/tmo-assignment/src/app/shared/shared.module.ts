@@ -15,7 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { SnackbarService } from './services/snackbar.service';
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     NavbarComponent,
     SidenavBarComponent,
     HomeComponent,
@@ -28,7 +28,7 @@ import { SnackbarService } from './services/snackbar.service';
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
-    StoreModule.forFeature(fromShared.featurekey, fromShared.reducer)
+    StoreModule.forFeature(fromShared.featurekey, fromShared.reducer),
   ],
   exports: [
     MaterialModule,
@@ -38,8 +38,6 @@ import { SnackbarService } from './services/snackbar.service';
     SidenavBarComponent,
     PageNotFoundComponent,
   ],
-  providers: [
-    SnackbarService
-  ]
+  providers: [SnackbarService],
 })
-export class SharedModule { }
+export class SharedModule {}

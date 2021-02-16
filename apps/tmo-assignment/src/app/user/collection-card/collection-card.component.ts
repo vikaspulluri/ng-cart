@@ -6,18 +6,15 @@ import { trackByFn } from '../../../../src/app/core/core.utility';
 @Component({
   selector: 'app-collection-card',
   templateUrl: './collection-card.component.html',
-  styleUrls: ['./collection-card.component.scss']
+  styleUrls: ['./collection-card.component.scss'],
 })
 export class CollectionCardComponent implements OnInit {
+  @Input('item') item: { quantity: number; product: CartItem };
+  constructor(private router: Router) {}
 
-  @Input('item') item: {quantity: number, product: CartItem};
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   viewItem(id: string | undefined) {
     this.router.navigate(['/books', id]);
   }
-
 }

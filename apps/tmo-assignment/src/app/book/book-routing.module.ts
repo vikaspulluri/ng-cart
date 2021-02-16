@@ -1,25 +1,22 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { BookListComponent } from './book-list/book-list.component';
-import { BookViewComponent } from "./book-view/book-view.component";
-import { BookResolverService } from "./book.resolver";
+import { BookViewComponent } from './book-view/book-view.component';
+import { BookResolverService } from './book.resolver';
 
-const bookRoutes: Routes = [
-    {path: '', component: BookListComponent},
-    {path: ':id', component: BookViewComponent, resolve: {book: BookResolverService}}
+export const bookRoutes: Routes = [
+  { path: '', component: BookListComponent },
+  {
+    path: ':id',
+    component: BookViewComponent,
+    resolve: { book: BookResolverService },
+  },
 ];
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(bookRoutes)
-    ],
-    exports: [
-        RouterModule
-    ],
-    providers: [
-        BookResolverService
-    ]
+  imports: [CommonModule, RouterModule.forChild(bookRoutes)],
+  exports: [RouterModule],
+  providers: [BookResolverService],
 })
 export class BooksRoutingModule {}

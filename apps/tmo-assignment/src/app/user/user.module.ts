@@ -9,7 +9,6 @@ import { SharedModule } from '../shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
 import { CollectionCardComponent } from './collection-card/collection-card.component';
 
-
 @NgModule({
   declarations: [CollectionComponent, CollectionCardComponent],
   imports: [
@@ -17,6 +16,6 @@ import { CollectionCardComponent } from './collection-card/collection-card.compo
     UserRoutingModule,
     SharedModule,
     StoreModule.forFeature(fromUser.featureKey, fromUser.reducer),
-  ]
+  ],
 })
-export class UserModule { }
+export class UserModule {}

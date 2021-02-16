@@ -1,5 +1,8 @@
 import { Type } from '@angular/core';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
@@ -15,27 +18,27 @@ import { BookCardComponent } from '../book-card/book-card.component';
 describe('BookListComponent', () => {
   let component: BookListComponent;
   let fixture: ComponentFixture<BookListComponent>;
-  let initialState = {
+  const initialState = {
     search: {
-      searchResults: []
+      searchResults: [],
     },
     cart: {
-      items: [{quantity: 1, product: mockBooks[0]}]
-    }
-  }
+      items: [{ quantity: 1, product: mockBooks[0] }],
+    },
+  };
   let store: MockStore;
   let snackbarService: SnackbarService;
   let httpMock: HttpTestingController;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookListComponent, SearchBarComponent, BookCardComponent ],
-      providers: [provideMockStore({initialState}), SnackbarService, HttpClientTestingModule],
-      imports: [
-        BrowserAnimationsModule,
-        MaterialModule
-      ]
-    })
-    .compileComponents();
+      declarations: [BookListComponent, SearchBarComponent, BookCardComponent],
+      providers: [
+        provideMockStore({ initialState }),
+        SnackbarService,
+        HttpClientTestingModule,
+      ],
+      imports: [BrowserAnimationsModule, MaterialModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -53,28 +56,28 @@ describe('BookListComponent', () => {
   it('should update the state with books', () => {
     const state = {
       cart: {
-        items: []
+        items: [],
       },
       search: {
         searchResults: {
-          items: mockBooks
-        }
-      }
-    }
+          items: mockBooks,
+        },
+      },
+    };
     store.setState(state);
     expect(component.books).toBe(mockBooks);
-  })
+  });
 
   it('should update the state with empty search results', () => {
     const state = {
       cart: {
-        items: []
+        items: [],
       },
       search: {
-        searchResults: null
-      }
-    }
+        searchResults: null,
+      },
+    };
     store.setState(state);
     expect(component.books).toEqual([]);
-  })
+  });
 });
