@@ -107,7 +107,30 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,16 +152,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,11 +175,24 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EMPTY, fromEvent, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  switchMap,
+} from 'rxjs/operators';
 import * as fromApp from '../../store/app.reducer';
 import * as SearchActions from '../store/search.actions';
 import * as SharedActions from '../../shared/store/shared.actions';
@@ -168,7 +200,7 @@ import * as SharedActions from '../../shared/store/shared.actions';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.scss']
+  styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input('label') label = 'Search';
@@ -179,33 +211,28 @@ export class SearchBarComponent implements OnInit, OnDestroy, AfterViewInit {
 &nbsp;
   subscriptions: Subscription[] = [];
 &nbsp;
-  constructor(
-    private store: Store&lt;fromApp.AppState&gt;
-    ) { }
+  constructor(private store: Store&lt;fromApp.AppState&gt;) {}
 &nbsp;
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 &nbsp;
-  ngAfterViewInit() {
-    const typeahead = fromEvent(this.searchBox.nativeElement, 'input')
-      .pipe(
-        map((e: Event) =&gt; (e.target as HTMLInputElement).value),
-        filter(text =&gt; text.length &gt;= 2),
-        debounceTime(500),
-        distinctUntilChanged(),
-        switchMap(searchTerm =&gt; {
-          this.store.dispatch(SearchActions.searchQuery({query: searchTerm}));
-          this.store.dispatch(SharedActions.showProgressBar());
-          return EMPTY;
-        })
-      );
+  ngAfterViewInit(): void {
+    const typeahead = fromEvent(this.searchBox.nativeElement, 'input').pipe(
+      map((e: Event) =&gt; (e.target as HTMLInputElement).value),
+      filter((text) =&gt; text.length &gt;= 2),
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap((searchTerm) =&gt; {
+        this.store.dispatch(SearchActions.searchQuery({ query: searchTerm }));
+        this.store.dispatch(SharedActions.showProgressBar());
+        return EMPTY;
+      })
+    );
     this.subscriptions.push(typeahead.subscribe());
   }
 &nbsp;
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub =&gt; sub.unsubscribe());
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) =&gt; sub.unsubscribe());
   }
-&nbsp;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -214,7 +241,7 @@ export class SearchBarComponent implements OnInit, OnDestroy, AfterViewInit {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Feb 16 2021 21:44:21 GMT+0530 (India Standard Time)
+                at Wed Feb 17 2021 10:59:52 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

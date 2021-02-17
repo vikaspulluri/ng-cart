@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { mockBooks } from '../../../../src/test/mocks';
+import { CollectionCardComponent } from '../collection-card/collection-card.component';
 import { UserModule } from '../user.module';
 
 import { CollectionComponent } from './collection.component';
@@ -12,25 +13,7 @@ describe('CollectionComponent', () => {
   let store: MockStore;
 
   const initialState = {
-    user: {
-      collections: [
-        {
-          orderId: 'ORDER-12345',
-          user: {
-            firstName: 'Vikas',
-            lastName: 'Pulluri',
-            email: 'vik@gmail.com',
-            address: 'Some street',
-          },
-          items: [
-            {
-              quantity: 1,
-              product: mockBooks[0],
-            },
-          ],
-        },
-      ],
-    },
+    user: {}
   };
 
   beforeEach(async () => {
@@ -51,4 +34,30 @@ describe('CollectionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should update the state', () => {
+    const state = {
+      user: {
+        collections: [
+          {
+            orderId: 'ORDER-12345',
+            user: {
+              firstName: 'Vikas',
+              lastName: 'Pulluri',
+              email: 'vik@gmail.com',
+              address: 'Some street',
+            },
+            items: [
+              {
+                quantity: 1,
+                product: mockBooks[0],
+              },
+            ],
+          },
+        ],
+      }
+    }
+    store.setState(state);
+    expect(state.user.collections.length).toEqual(1);
+  })
 });

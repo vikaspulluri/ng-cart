@@ -60,11 +60,11 @@ export class BillingInfoComponent implements OnInit, OnDestroy {
 
   getUser(): User {
     return {
-      firstName: this.userForm.get('firstName')?.value,
-      lastName: this.userForm.get('lastName')?.value,
-      email: this.userForm.get('email')?.value,
-      phone: this.userForm.get('phone')?.value,
-      address: this.userForm.get('address')?.value,
+      firstName: this.userForm.get('firstName')!.value,
+      lastName: this.userForm.get('lastName')!.value,
+      email: this.userForm.get('email')!.value,
+      phone: this.userForm.get('phone')!.value,
+      address: this.userForm.get('address')!.value,
     };
   }
 

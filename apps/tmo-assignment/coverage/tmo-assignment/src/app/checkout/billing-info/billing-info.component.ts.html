@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.77% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>21/26</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -126,7 +126,12 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -147,7 +152,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,14 +159,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,7 +205,6 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -211,58 +221,63 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-billing-info',
   templateUrl: './billing-info.component.html',
-  styleUrls: ['./billing-info.component.scss']
+  styleUrls: ['./billing-info.component.scss'],
 })
 export class BillingInfoComponent implements OnInit, OnDestroy {
-&nbsp;
-  items: {quantity: number, product: CartItem}[];
+  items: { quantity: number; product: CartItem }[];
   collectionsCount: number;
   userForm: FormGroup = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.pattern(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/)]), // source: https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
+    phone: new FormControl('', [
+      Validators.pattern(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/),
+    ]),
+    // source: https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
     address: new FormControl('', [Validators.required]),
   });
   subscriptions: Subscription[] = [];
-  constructor(private store: Store&lt;fromApp.AppState&gt;,
-              private snackbarService: SnackbarService,
-              private router: Router) { }
+  constructor(
+    private store: Store&lt;fromApp.AppState&gt;,
+    private snackbarService: SnackbarService,
+    private router: Router
+  ) {}
 &nbsp;
   ngOnInit(): void {
     this.subscriptions.push(
-      this.store.select(state =&gt; state.cart).subscribe(cart =&gt; {
-        if (cart &amp;&amp; cart.items) {
-          this.items = cart.items;
-        }
-      })
+      this.store
+        .select((state) =&gt; state.cart)
+        .subscribe((cart) =&gt; {
+          if (cart &amp;&amp; cart.items) {
+            this.items = cart.items;
+          }
+        })
     );
   }
 &nbsp;
-  purchase() {
+  purchase(): void {
     if (this.userForm.invalid) {
       this.snackbarService.open(MESSAGES.INVALID_DATA);
       return;
     }
     const user = this.getUser();
     this.store.dispatch(SharedActions.showProgressBar());
-    this.store.dispatch(CheckoutActions.purchase({items: this.items, user}));
+    this.store.dispatch(CheckoutActions.purchase({ items: this.items, user }));
   }
 &nbsp;
   getUser(): User {
     return {
-      firstName: this.userForm.get('firstName')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue,
-      lastName: this.userForm.get('lastName')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue,
-      email: this.userForm.get('email')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue,
-      phone: this.userForm.get('phone')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue,
-      address: this.userForm.get('address')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue
+      firstName: this.userForm.get('firstName')!.value,
+      lastName: this.userForm.get('lastName')!.value,
+      email: this.userForm.get('email')!.value,
+      phone: this.userForm.get('phone')!.value,
+      address: this.userForm.get('address')!.value,
     };
   }
 &nbsp;
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub =&gt; sub.unsubscribe());
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) =&gt; sub.unsubscribe());
   }
-&nbsp;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -271,7 +286,7 @@ export class BillingInfoComponent implements OnInit, OnDestroy {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Feb 16 2021 21:44:21 GMT+0530 (India Standard Time)
+                at Wed Feb 17 2021 10:59:52 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

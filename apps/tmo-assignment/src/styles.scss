@@ -79,6 +79,9 @@ aside {
 
 .mat-progress-bar {
   top: 64px;
+  @media screen and (max-width: 599px) {
+    top: 56px;
+  }
 }
 
 .mobile-bar {

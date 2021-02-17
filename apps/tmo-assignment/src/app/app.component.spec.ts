@@ -5,14 +5,12 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 import { routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { CoreComponent } from './core/core/core.component';
 
 describe('AppComponent', () => {
-  let store: MockStore;
   let router: Router;
   beforeEach(async () => {
     await TestBed.configureTestingModule({

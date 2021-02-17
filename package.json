@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "nx",
     "start": "ng serve --hmr",
-    "build": "ng build",
-    "test": "ng test --code-coverage",
-    "prettier": "prettier --list-different",
+    "build:prod": "ng build --prod",
+    "test": "ng test --code-coverage --watch",
+    "prettier": "prettier --write",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "stats:analysis": "webpack-bundle-analyzer dist/tmo-assignment/stats.json",

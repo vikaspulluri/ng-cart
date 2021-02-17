@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { BookCardComponent } from './book-card.component';
-import { Location } from '@angular/common';
 import { mockBooks } from '../../../../src/test/mocks';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
 
@@ -11,7 +10,6 @@ describe('BookCardComponent', () => {
   let component: BookCardComponent;
   let fixture: ComponentFixture<BookCardComponent>;
   let store: MockStore;
-  let location: Location;
   const initialState = {
     books: {
       items: mockBooks,

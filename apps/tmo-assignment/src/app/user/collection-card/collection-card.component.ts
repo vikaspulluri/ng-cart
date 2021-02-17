@@ -14,7 +14,7 @@ export class CollectionCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  viewItem(id: string | undefined) {
+  viewItem(id: string | undefined): void {
     this.router.navigate(['/books', id]);
   }
 }

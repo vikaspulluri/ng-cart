@@ -103,6 +103,7 @@
   &.full {
     max-width: 90%;
     margin: 0 auto;
+    overflow-x: hidden;
     .description {
       display: block;
     }
@@ -118,6 +119,12 @@
       .image {
         margin: 0.5em 0;
       }
+    }
+  }
+  &.light {
+    @media screen and (max-width: 768px) {
+      max-width: 85%;
+      margin: 0 auto;
     }
   }
 }

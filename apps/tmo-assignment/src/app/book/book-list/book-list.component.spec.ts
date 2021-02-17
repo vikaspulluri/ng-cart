@@ -28,7 +28,6 @@ describe('BookListComponent', () => {
   };
   let store: MockStore;
   let snackbarService: SnackbarService;
-  let httpMock: HttpTestingController;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BookListComponent, SearchBarComponent, BookCardComponent],

@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { SearchEffects } from './search.effects';
 import { SearchService } from '../search.service';
 import * as SearchActions from './search.actions';
 
 class MockSearchService {
-  search(query: string) {
+  search(query: string): Observable<any> {
     return of({ kind: 'volume', items: [] });
   }
 }
@@ -44,6 +44,18 @@ describe('SearchEffects', () => {
     actions$ = of(SearchActions.searchQuery({ query: 'angular' }));
     effects.searchQuery$.subscribe((response) => {
       console.log('response', response);
+      expect(spy).toHaveBeenCalled();
+      done();
+    });
+  });
+
+  it('it should search query with error', (done) => {
+    const spy = spyOn(searchService, 'search').and.returnValue(throwError('Error occured'));
+    actions$ = of(SearchActions.searchQuery({ query: 'angular' }));
+    effects.searchQuery$.subscribe((response) => {
+      expect(spy).toHaveBeenCalled();
+      done();
+    }, error => {
       expect(spy).toHaveBeenCalled();
       done();
     });

@@ -52,14 +52,4 @@ describe('CoreComponent', () => {
     expect(component.progressbar).toBeUndefined();
   }));
 
-  it('should not map quantity with object', () => {
-    const items = [
-      {
-        quantity: 1,
-        product: mockBooks[0],
-      },
-    ];
-    const quantityMap = mapQuantityWithObject(items);
-    expect(quantityMap).toBeTruthy();
-  });
 });

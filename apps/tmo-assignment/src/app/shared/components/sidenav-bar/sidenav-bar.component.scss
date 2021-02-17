@@ -36,6 +36,7 @@
   }
   @media screen and (max-width: 768px) {
     display: flex;
+    max-width: 100vw;
     .mat-list-item {
       &.active {
         background-color: #e91e63;

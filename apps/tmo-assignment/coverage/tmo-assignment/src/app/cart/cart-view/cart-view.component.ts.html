@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/19</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -114,7 +114,17 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,18 +139,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,14 +160,20 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,14 +183,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { mapQuantityWithObject, trackByFn } from '../../../../src/app/core/core.utility';
+import {
+  mapQuantityWithObject,
+  trackByFn,
+} from '../../../../src/app/core/core.utility';
 import * as fromApp from '../../store/app.reducer';
 import { CartItem } from '../cart.model';
 import * as CartActions from '../store/cart.actions';
@@ -183,50 +200,54 @@ import * as CartActions from '../store/cart.actions';
 @Component({
   selector: 'app-cart-view',
   templateUrl: './cart-view.component.html',
-  styleUrls: ['./cart-view.component.scss']
+  styleUrls: ['./cart-view.component.scss'],
 })
 export class CartViewComponent implements OnInit, OnDestroy {
-&nbsp;
-  cartItems: {quantity: number, product: CartItem}[] = [];
-  quantityMap: {[key: string]: number} = {};
+  cartItems: { quantity: number; product: CartItem }[] = [];
+  quantityMap: { [key: string]: number } = {};
   subscriptions: Subscription[] = [];
   trackByFn = trackByFn;
-  constructor(
-    private store: Store&lt;fromApp.AppState&gt;,
-    private router: Router) { }
+  constructor(private store: Store&lt;fromApp.AppState&gt;, private router: Router) {}
 &nbsp;
   ngOnInit(): void {
     this.subscriptions.push(
-      this.store.select(state =&gt; state.cart).subscribe(({items}) =&gt; {
-        this.cartItems = items;
-        this.quantityMap = mapQuantityWithObject(this.cartItems);
-      })
+      this.store
+        .select((state) =&gt; state.cart)
+        .subscribe(({ items }) =&gt; {
+          this.cartItems = items;
+          this.quantityMap = mapQuantityWithObject(this.cartItems);
+        })
     );
   }
 &nbsp;
-  removeItem(id: string | undefined) {
-    if (!id) { return; }
-    this.store.dispatch(CartActions.removeItem({id}));
+  removeItem(id: string | undefined): void {
+    if (!id) {
+      return;
+    }
+    this.store.dispatch(CartActions.removeItem({ id }));
   }
 &nbsp;
-  incrementQuantity(id: string | undefined) {
-    if (!id) { return; }
-    this.store.dispatch(CartActions.incrementQuantity({id}));
+  incrementQuantity(id: string | undefined): void {
+    if (!id) {
+      return;
+    }
+    this.store.dispatch(CartActions.incrementQuantity({ id }));
   }
 &nbsp;
-  decrementQuantity(id: string | undefined) {
-    if (!id) { return; }
-    this.store.dispatch(CartActions.decrementQuantity({id}));
+  decrementQuantity(id: string | undefined): void {
+    if (!id) {
+      return;
+    }
+    this.store.dispatch(CartActions.decrementQuantity({ id }));
   }
 &nbsp;
-  proceedToCheckout() {
+  proceedToCheckout(): void {
     this.router.navigate(['/checkout']);
   }
 &nbsp;
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub =&gt; sub.unsubscribe());
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) =&gt; sub.unsubscribe());
   }
-&nbsp;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -235,7 +256,7 @@ export class CartViewComponent implements OnInit, OnDestroy {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Feb 16 2021 21:44:21 GMT+0530 (India Standard Time)
+                at Wed Feb 17 2021 10:59:52 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

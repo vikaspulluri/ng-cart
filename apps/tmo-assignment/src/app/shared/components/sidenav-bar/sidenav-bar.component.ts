@@ -31,24 +31,24 @@ export class SidenavBarComponent implements OnInit, OnDestroy, AfterViewInit {
             const navItem = this.navItems.find(
               (item) => item.id === cartFeatureKey
             );
-            navItem
-              ? (navItem.notificationCount = items.reduce(
-                  (acc, item) => acc + item.quantity,
-                  0
-                ))
-              : void 0;
+            if (navItem) {
+              navItem.notificationCount = items.reduce(
+                (acc, item) => acc + item.quantity,
+                0
+              );
+            }
           }
           if (user && user.collections) {
             const collections = user.collections;
             const navItem = this.navItems.find(
               (item) => item.id === userFeatureKey
             );
-            navItem && collections.length
-              ? (navItem.notificationCount = collections.reduce(
-                  (acc, collection) => acc + collection.items.length,
-                  0
-                ))
-              : void 0;
+            if (navItem && collections.length) {
+              navItem.notificationCount = collections.reduce(
+                (acc, collection) => acc + collection.items.length,
+                0
+              );
+            }
           }
         })
     );

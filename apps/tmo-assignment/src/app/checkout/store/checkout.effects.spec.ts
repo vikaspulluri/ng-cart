@@ -8,6 +8,8 @@ import * as CheckoutActions from './checkout.actions';
 import { SearchService } from '../../search/search.service';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import { Router } from '@angular/router';
+import { User } from '../../user/user.model';
+import { mockBooks } from '../../../test/mocks';
 
 class MockSnabarService {
   open(message: string): null {
@@ -64,4 +66,20 @@ describe('CheckoutEffects', () => {
       done();
     });
   });
+
+  it('should purchase items', (done) => {
+    const user: User = {
+      firstName: 'Vikas',
+      lastName: 'Pulluri',
+      email: 'vik@gmail.com',
+      phone: 1234567890,
+      address: 'Some street'
+    }
+    actions$ = of(CheckoutActions.purchase({user: user, items: [{quantity: 1, product: mockBooks[0]}]}));
+    effects.purchase$.subscribe((res) => {
+      done();
+    }, error => {
+      done();
+    })
+  })
 });

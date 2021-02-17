@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/31</span>
+                <span class='fraction'>33/33</span>
             </div>
         
             
@@ -136,7 +136,20 @@
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,8 +169,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
@@ -172,6 +190,8 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -190,6 +210,9 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,6 +227,9 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,76 +249,89 @@ import * as CartActions from './cart.actions';
 export const featureKey = cartFeatureKey;
 &nbsp;
 export interface State {
-    items: {product: CartItem, quantity: number}[];
+  items: { product: CartItem; quantity: number }[];
 }
 &nbsp;
 export const initialState: State = {
-    items: []
+  items: [],
 };
 &nbsp;
 const cartReducer = createReducer(
-    initialState,
-    on(CartActions.addItem, (state, { item }) =&gt; {
-        const items = [...state.items];
-        const addedProduct = items.findIndex(product =&gt; (product &amp;&amp; product.product<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d === item<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d));
-        if (addedProduct &gt; -1 &amp;&amp; items[addedProduct].quantity) {
-            items[addedProduct] = {quantity: items[addedProduct].quantity + 1, product: items[addedProduct].product};
-        } else {
-            const addedProduct = {quantity: 1, product: item};
-            items.push(addedProduct);
-        }
-        return {
-            ...state,
-            items
-        };
-    }),
-    on(CartActions.removeItem, (state, { id }) =&gt; {
-        const items = [...state.items];
-        let index = -1;
-        if (id) {
-            index = items.findIndex(item =&gt; !!item &amp;&amp; !!item.product &amp;&amp; item<span class="branch-0 cbranch-no" title="branch not covered" >?.p</span>roduct<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d === id);
-        }
-        if (index &gt; -1) {
-            items.splice(index, 1);
-        }
-        return {
-            ...state,
-            items
-        };
-    }),
-    on(CartActions.clearCart, (state) =&gt; ({
-        ...state,
-        items: []
-    })),
-    on(CartActions.decrementQuantity, (state, {id}) =&gt; {
-        const items = [...state.items];
-        const itemIndex = items.findIndex(item =&gt; item<span class="branch-0 cbranch-no" title="branch not covered" >?.p</span>roduct<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d === id);
-        if (itemIndex &gt; -1) {
-            items[itemIndex] = {quantity: items[itemIndex].quantity - 1, product: items[itemIndex].product};
-            if (items[itemIndex].quantity === 0 ) {
-                items.splice(itemIndex, 1);
-            }
-        }
-        return {
-            ...state,
-            items
-        };
-    }),
-    on(CartActions.incrementQuantity, (state, {id}) =&gt; {
-        const items = [...state.items];
-        const itemIndex = items.findIndex(item =&gt; item<span class="branch-0 cbranch-no" title="branch not covered" >?.p</span>roduct<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d === id);
-        if (itemIndex &gt; -1) {
-            items[itemIndex] = {quantity: items[itemIndex].quantity + 1, product: items[itemIndex].product};
-        }
-        return {
-            ...state,
-            items
-        };
-    })
+  initialState,
+  on(CartActions.addItem, (state, { item }) =&gt; {
+    const items = [...state.items];
+    const addedProductIndex = items.findIndex(
+      (product) =&gt; product &amp;&amp; product.product<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d === item<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d
+    );
+    if (addedProductIndex &gt; -1 &amp;&amp; items[addedProductIndex].quantity) {
+      items[addedProductIndex] = {
+        quantity: items[addedProductIndex].quantity + 1,
+        product: items[addedProductIndex].product,
+      };
+    } else {
+      const addedProduct = { quantity: 1, product: item };
+      items.push(addedProduct);
+    }
+    return {
+      ...state,
+      items,
+    };
+  }),
+  on(CartActions.removeItem, (state, { id }) =&gt; {
+    const items = [...state.items];
+    let index = -1;
+    if (id) {
+      index = items.findIndex(
+        (item) =&gt; !!item &amp;&amp; !!item.product &amp;&amp; item<span class="branch-0 cbranch-no" title="branch not covered" >?.p</span>roduct<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d === id
+      );
+    }
+    if (index &gt; -1) {
+      items.splice(index, 1);
+    }
+    return {
+      ...state,
+      items,
+    };
+  }),
+  on(CartActions.clearCart, (state) =&gt; ({
+    ...state,
+    items: [],
+  })),
+  on(CartActions.decrementQuantity, (state, { id }) =&gt; {
+    const items = [...state.items];
+    const itemIndex = items.findIndex((item) =&gt; item<span class="branch-0 cbranch-no" title="branch not covered" >?.p</span>roduct<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d === id);
+    if (itemIndex &gt; -1) {
+      items[itemIndex] = {
+        quantity: items[itemIndex].quantity - 1,
+        product: items[itemIndex].product,
+      };
+      if (items[itemIndex].quantity === 0) {
+        items.splice(itemIndex, 1);
+      }
+    }
+    return {
+      ...state,
+      items,
+    };
+  }),
+  on(CartActions.incrementQuantity, (state, { id }) =&gt; {
+    const items = [...state.items];
+    const itemIndex = items.findIndex((item) =&gt; item<span class="branch-0 cbranch-no" title="branch not covered" >?.p</span>roduct<span class="branch-0 cbranch-no" title="branch not covered" >?.i</span>d === id);
+    if (itemIndex &gt; -1) {
+      items[itemIndex] = {
+        quantity: items[itemIndex].quantity + 1,
+        product: items[itemIndex].product,
+      };
+    }
+    return {
+      ...state,
+      items,
+    };
+  })
 );
 &nbsp;
-export function reducer(state: State | undefined, action: Action) {
-    return cartReducer(state, action);
+export function reducer(state: State | undefined, action: Action): State {
+  return cartReducer(state, action);
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -301,7 +340,7 @@ export function reducer(state: State | undefined, action: Action) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Feb 16 2021 21:44:21 GMT+0530 (India Standard Time)
+                at Wed Feb 17 2021 10:59:52 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

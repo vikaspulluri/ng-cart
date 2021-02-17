@@ -2,6 +2,10 @@ aside {
   display: flex;
   justify-content: center;
   height: calc(100% - 64px);
+  @media screen and (max-width: 600px) {
+    display: block;
+    height: auto;
+  }
   .checkout-container {
     display: flex;
     justify-content: center;
@@ -17,6 +21,7 @@ aside {
       flex-direction: column;
       max-height: 100%;
       top: 0;
+      margin: 0 auto;
     }
     .left {
       width: 50%;
@@ -50,6 +55,7 @@ aside {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-bottom: 1em;
       }
       .billing-form {
         display: flex;

@@ -10,6 +10,7 @@
   max-width: 100%;
   flex-wrap: wrap;
   justify-content: center;
+  overflow-x: hidden;
 }
 .placeholder-layout {
   height: calc(100vh - 128px);
