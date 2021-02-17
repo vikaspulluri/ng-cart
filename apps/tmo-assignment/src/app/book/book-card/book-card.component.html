@@ -1,0 +1,116 @@
+<mat-card class="book-card light" *ngIf="mode === 'light'">
+  <mat-card-header>
+    <div class="left">
+      <mat-card-title>{{ book.volumeInfo?.title }}</mat-card-title>
+      <mat-card-subtitle>{{ book.volumeInfo?.subtitle }}</mat-card-subtitle>
+    </div>
+    <div class="right">
+      <div mat-card-avatar class="header-image">
+        <img
+          src="{{ book.volumeInfo?.imageLinks?.smallThumbnail }}"
+          alt="{{ book.volumeInfo?.title }}"
+        />
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="description" [innerHTML]="book.volumeInfo?.description"></div>
+    <div class="authors" *ngIf="book.volumeInfo?.authors">
+      <h4>Written by:</h4>
+      <div>{{ book.volumeInfo?.authors }}</div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="viewBook(book.id)">
+      View More
+    </button>
+    <!-- <button mat-raised-button color="primary" (click)="addToCart()">Add To Cart</button> -->
+    <button mat-raised-button color="primary" (click)="addToCart()">
+      Add To Cart
+      <mat-icon
+        [matBadge]="quantity"
+        matBadgeColor="accent"
+        matBadgeSize="small"
+        >shopping_cart_outline</mat-icon
+      >
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="book-card full" *ngIf="mode === 'full'">
+  <mat-card-header>
+    <div class="left">
+      <mat-card-title>{{ book.volumeInfo?.title }}</mat-card-title>
+      <mat-card-subtitle>{{ book.volumeInfo?.subtitle }}</mat-card-subtitle>
+    </div>
+    <div
+      class="right"
+      *ngIf="
+        !book.volumeInfo?.imageLinks?.thumbnail &&
+        book.volumeInfo?.imageLinks?.smallThumbnail
+      "
+    >
+      <div mat-card-avatar class="header-image">
+        <img
+          src="{{ book.volumeInfo?.imageLinks?.smallThumbnail }}"
+          alt="{{ book.volumeInfo?.title }}"
+        />
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="main-image" *ngIf="book.volumeInfo?.imageLinks?.thumbnail">
+      <mat-divider></mat-divider>
+      <div class="image">
+        <img
+          src="{{ book.volumeInfo?.imageLinks?.thumbnail }}"
+          alt="{{ book.volumeInfo?.title }}"
+        />
+      </div>
+    </div>
+    <div class="meta-info">
+      <mat-divider></mat-divider>
+      <div>
+        <bar-rating
+          [rate]="book.volumeInfo?.averageRating"
+          [readOnly]="true"
+          [theme]="'stars'"
+          [max]="5"
+        ></bar-rating>
+      </div>
+      <div>
+        <strong>Publisher: </strong
+        ><span>{{ book.volumeInfo?.publisher }}</span>
+      </div>
+      <div>
+        <strong>Page Count: </strong
+        ><span>{{ book.volumeInfo?.pageCount }}</span>
+      </div>
+      <div>
+        <strong>Language: </strong><span>{{ book.volumeInfo?.language }}</span>
+      </div>
+      <div>
+        <strong>Categories: </strong
+        ><span>{{ book.volumeInfo?.categories }}</span>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="description" [innerHTML]="book.volumeInfo?.description"></div>
+    <div class="authors" *ngIf="book.volumeInfo?.authors">
+      <h4>Written by:</h4>
+      <div>{{ book.volumeInfo?.authors }}</div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addToCart()">
+      Add To Cart
+      <mat-icon
+        [matBadge]="quantity"
+        matBadgeColor="accent"
+        matBadgeSize="small"
+        >shopping_cart_outline</mat-icon
+      >
+    </button>
+    <button mat-raised-button color="primary" (click)="buy()">Buy</button>
+  </mat-card-actions>
+</mat-card>

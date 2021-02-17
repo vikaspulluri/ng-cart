@@ -1,0 +1,13 @@
+button {
+  background: transparent;
+  border: unset;
+  color: #fff;
+  cursor: pointer;
+}
+
+.mat-toolbar {
+  position: fixed;
+  z-index: 1;
+  max-height: 64px;
+  max-width: 100vw;
+}
