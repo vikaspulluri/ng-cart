@@ -13,7 +13,7 @@ import { BookService } from '../book.service';
 
 import { BookListComponent } from './book-list.component';
 import { mockBooks } from '../../../../src/test/mocks';
-import { BookCardComponent } from '../book-card/book-card.component';
+import { ItemCardComponent } from '../../shared/components/item-card/item-card.component';
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -30,7 +30,7 @@ describe('BookListComponent', () => {
   let snackbarService: SnackbarService;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BookListComponent, SearchBarComponent, BookCardComponent],
+      declarations: [BookListComponent, SearchBarComponent, ItemCardComponent],
       providers: [
         provideMockStore({ initialState }),
         SnackbarService,

@@ -7,7 +7,6 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { mockBooks } from '../../../../src/test/mocks';
-import { BookCardComponent } from '../book-card/book-card.component';
 
 import { BookViewComponent } from './book-view.component';
 

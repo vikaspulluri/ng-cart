@@ -2,8 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { mockBooks } from '../../../../src/test/mocks';
-import { CollectionCardComponent } from '../collection-card/collection-card.component';
-import { UserModule } from '../user.module';
+import { ItemCardComponent } from '../../shared/components/item-card/item-card.component';
 
 import { CollectionComponent } from './collection.component';
 
@@ -18,7 +17,7 @@ describe('CollectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CollectionComponent],
+      declarations: [CollectionComponent, ItemCardComponent],
       imports: [MaterialModule],
       providers: [provideMockStore({ initialState })],
     }).compileComponents();
