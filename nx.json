@@ -1,5 +1,5 @@
 {
-  "npmScope": "tmo-assignment",
+  "npmScope": "ng-cart-assignment",
   "affected": {
     "defaultBase": "master"
   },
@@ -12,12 +12,12 @@
     "tsconfig.base.json": "*"
   },
   "projects": {
-    "tmo-assignment": {
+    "ng-cart-assignment": {
       "tags": []
     },
-    "tmo-assignment-e2e": {
+    "ng-cart-assignment-e2e": {
       "tags": [],
-      "implicitDependencies": ["tmo-assignment"]
+      "implicitDependencies": ["ng-cart-assignment"]
     }
   }
 }

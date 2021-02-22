@@ -1,0 +1,10 @@
+.cart-container {
+  display: flex;
+  position: relative;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1em;
+}

@@ -1,0 +1,46 @@
+<aside>
+  <div class="search-container">
+    <app-search-bar [placeholder]="'Search in Library'"></app-search-bar>
+  </div>
+
+  <div class="books-container" *ngIf="books && books.length > 0; else noBooks">
+    <app-item-card
+      [item]="book"
+      [options]="layoutOptions"
+      class="book-card-container"
+      *ngFor="let book of books; index as i; trackBy: trackByFn"
+    >
+      <button mat-raised-button color="primary" (click)="viewBook(book.id)">
+        View Book
+    </button>
+    <button mat-raised-button color="primary" (click)="addToCart(book)">
+      Add To Cart
+      <mat-icon
+        [matBadge]="quantityMap[book.id]"
+        matBadgeColor="accent"
+        matBadgeSize="small"
+        >shopping_cart_outline</mat-icon
+      >
+    </button>
+  </app-item-card>
+    <!-- <app-book-card
+      [book]="book"
+      mode="light"
+      [quantity]="quantityMap[book.id]"
+      *ngFor="let book of books; index as i; trackBy: trackByFn"
+    ></app-book-card> -->
+  </div>
+</aside>
+
+<ng-template #noBooks>
+  <div class="placeholder-layout">
+    <div class="title">
+      <h1>Explore the Book Library!</h1>
+    </div>
+    <div class="container">
+      <div class="image-container">
+        <mat-icon color="accent">local_library</mat-icon>
+      </div>
+    </div>
+  </div>
+</ng-template>

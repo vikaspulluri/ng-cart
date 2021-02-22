@@ -1,0 +1,55 @@
+<aside>
+  <div
+    class="cart-container"
+    *ngIf="cartItems && cartItems.length > 0; else emptyCart"
+  >
+  <app-item-card
+      [item]="cartItem.product"
+      [options]="options"
+      class="cart-card-container"
+      *ngFor="let cartItem of cartItems; index as i; trackBy: trackByFn"
+    >
+    <button
+    mat-raised-button
+    color="primary"
+    (click)="removeItem(cartItem?.product?.id)"
+  >
+    Remove
+    <mat-icon>delete</mat-icon>
+  </button>
+  <div class="update-btns-container">
+    <mat-icon (click)="decrementQuantity(cartItem?.product?.id)"
+      >remove_circle</mat-icon
+    >
+    <button mat-mini-fab color="primary">
+      {{ quantityMap[cartItem!.product!.id] }}
+    </button>
+    <mat-icon (click)="incrementQuantity(cartItem?.product?.id)"
+      >add_circle</mat-icon
+    >
+  </div>
+  </app-item-card>
+
+    <button mat-raised-button color="primary" (click)="proceedToCheckout()">
+      Proceed to Purchase
+    </button>
+  </div>
+</aside>
+
+<ng-template #emptyCart>
+  <div class="placeholder-layout">
+    <div class="title">
+      <h1>Your cart is empty!</h1>
+    </div>
+    <div class="container">
+      <div class="image-container">
+        <mat-icon color="accent">add_shopping_cart</mat-icon>
+      </div>
+      <div class="paths">
+        <button mat-raised-button color="primary" routerLink="/books">
+          Go to Library
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
