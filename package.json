@@ -1,5 +1,5 @@
 {
-  "name": "tmo-assignment",
+  "name": "ng-cart-assignment",
   "version": "0.0.0",
   "scripts": {
     "ng": "nx",
@@ -9,7 +9,7 @@
     "prettier": "prettier --write",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
-    "stats:analysis": "webpack-bundle-analyzer dist/tmo-assignment/stats.json",
+    "stats:analysis": "webpack-bundle-analyzer dist/ng-cart-assignment/stats.json",
     "nx": "nx",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",

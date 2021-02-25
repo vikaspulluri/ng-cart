@@ -1,0 +1,28 @@
+<mat-card [class]="options?.classNames">
+    <mat-card-header>
+      <div class="left">
+        <mat-card-title>{{ item.volumeInfo?.title }}</mat-card-title>
+        <mat-card-subtitle>{{ item.volumeInfo?.subtitle }}</mat-card-subtitle>
+        <strong *ngIf="quantity && quantity > 0">Quantity: {{ quantity }}</strong>
+      </div>
+      <div class="right">
+        <div mat-card-avatar class="header-image">
+          <img
+            src="{{ item.volumeInfo?.imageLinks?.smallThumbnail }}"
+            alt="{{ item.volumeInfo?.title }}"
+          />
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="description" [innerHTML]="item.volumeInfo?.description"></div>
+      <div class="authors" *ngIf="item.volumeInfo?.authors">
+        <h4>Written by:</h4>
+        <div>{{ item.volumeInfo?.authors }}</div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <ng-content></ng-content>
+    </mat-card-actions>
+  </mat-card>
+  

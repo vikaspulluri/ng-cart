@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "defaultProject": "tmo-assignment",
+  "defaultProject": "ng-cart-assignment",
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
   "projects": {
-    "tmo-assignment": {
+    "ng-cart-assignment": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -16,32 +16,32 @@
           "strict": true
         }
       },
-      "root": "apps/tmo-assignment",
-      "sourceRoot": "apps/tmo-assignment/src",
+      "root": "apps/ng-cart-assignment",
+      "sourceRoot": "apps/ng-cart-assignment/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/tmo-assignment",
-            "index": "apps/tmo-assignment/src/index.html",
-            "main": "apps/tmo-assignment/src/main.ts",
-            "polyfills": "apps/tmo-assignment/src/polyfills.ts",
-            "tsConfig": "apps/tmo-assignment/tsconfig.app.json",
+            "outputPath": "dist/apps/ng-cart-assignment",
+            "index": "apps/ng-cart-assignment/src/index.html",
+            "main": "apps/ng-cart-assignment/src/main.ts",
+            "polyfills": "apps/ng-cart-assignment/src/polyfills.ts",
+            "tsConfig": "apps/ng-cart-assignment/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/tmo-assignment/src/favicon.ico",
-              "apps/tmo-assignment/src/assets"
+              "apps/ng-cart-assignment/src/favicon.ico",
+              "apps/ng-cart-assignment/src/assets"
             ],
-            "styles": ["apps/tmo-assignment/src/styles.scss"],
+            "styles": ["apps/ng-cart-assignment/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/tmo-assignment/src/environments/environment.ts",
-                  "with": "apps/tmo-assignment/src/environments/environment.prod.ts"
+                  "replace": "apps/ng-cart-assignment/src/environments/environment.ts",
+                  "with": "apps/ng-cart-assignment/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -69,34 +69,34 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "tmo-assignment:build"
+            "browserTarget": "ng-cart-assignment:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "tmo-assignment:build:production"
+              "browserTarget": "ng-cart-assignment:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tmo-assignment:build"
+            "browserTarget": "ng-cart-assignment:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "apps/tmo-assignment/src/test.ts",
-            "polyfills": "apps/tmo-assignment/src/polyfills.ts",
-            "tsConfig": "apps/tmo-assignment/tsconfig.spec.json",
-            "karmaConfig": "apps/tmo-assignment/karma.conf.js",
+            "main": "apps/ng-cart-assignment/src/test.ts",
+            "polyfills": "apps/ng-cart-assignment/src/polyfills.ts",
+            "tsConfig": "apps/ng-cart-assignment/tsconfig.spec.json",
+            "karmaConfig": "apps/ng-cart-assignment/karma.conf.js",
             "assets": [
-              "apps/tmo-assignment/src/favicon.ico",
-              "apps/tmo-assignment/src/assets"
+              "apps/ng-cart-assignment/src/favicon.ico",
+              "apps/ng-cart-assignment/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "apps/tmo-assignment/src/styles.scss"
+              "apps/ng-cart-assignment/src/styles.scss"
             ],
             "scripts": []
           }
@@ -105,8 +105,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/tmo-assignment/tsconfig.app.json",
-              "apps/tmo-assignment/tsconfig.spec.json"
+              "apps/ng-cart-assignment/tsconfig.app.json",
+              "apps/ng-cart-assignment/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -115,36 +115,36 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "tmo-assignment:serve"
+            "devServerTarget": "ng-cart-assignment:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "tmo-assignment:serve:production"
+              "devServerTarget": "ng-cart-assignment:serve:production"
             }
           }
         }
       }
     },
-    "tmo-assignment-e2e": {
-      "root": "apps/tmo-assignment-e2e",
+    "ng-cart-assignment-e2e": {
+      "root": "apps/ng-cart-assignment-e2e",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "apps/tmo-assignment-e2e/protractor.conf.js",
-            "devServerTarget": "tmo-assignment:serve"
+            "protractorConfig": "apps/ng-cart-assignment-e2e/protractor.conf.js",
+            "devServerTarget": "ng-cart-assignment:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "tmo-assignment:serve:production"
+              "devServerTarget": "ng-cart-assignment:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/tmo-assignment-e2e/tsconfig.json",
+            "tsConfig": "apps/ng-cart-assignment-e2e/tsconfig.json",
             "exclude": ["**/node_modules/**"]
           }
         }

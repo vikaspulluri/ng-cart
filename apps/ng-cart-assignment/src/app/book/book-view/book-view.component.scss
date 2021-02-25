@@ -1,0 +1,21 @@
+.full {
+    max-width: 90%;
+    margin: 0 auto;
+    overflow-x: hidden;
+    .description {
+      display: block;
+    }
+    .meta-info > div {
+      padding: 0.25em 0;
+    }
+    .meta-info {
+      margin-bottom: 1em;
+    }
+    .main-image {
+      display: flex;
+      justify-content: center;
+      .image {
+        margin: 0.5em 0;
+      }
+    }
+  }
