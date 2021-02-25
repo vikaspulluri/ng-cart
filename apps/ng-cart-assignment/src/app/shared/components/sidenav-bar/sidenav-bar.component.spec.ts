@@ -73,4 +73,5 @@ describe('SidenavBarComponent', () => {
     store.setState(state);
     expect(component.navItems).toBeTruthy();
   });
+
 });

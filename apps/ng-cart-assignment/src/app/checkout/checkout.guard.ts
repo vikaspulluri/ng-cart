@@ -22,6 +22,7 @@ export class CheckoutGuard implements CanActivate {
     | UrlTree
     | Promise<boolean | UrlTree>
     | Observable<boolean | UrlTree> {
+      console.log('routing guard', route, router);
       return this.cartFacade
         .getCartItems()
         .pipe(

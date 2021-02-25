@@ -15,12 +15,6 @@ export class BookFacade {
         this.dispatch(BookActions.bookResults({books}));
     }
 
-    getBooks(): Observable<Book[]> {
-        return this.searchFacade.getSearchResults().pipe(
-            switchMap(results => of(results!.items) || of([]))
-        );
-    }
-
     dispatch(action: Action) {
         this.store.dispatch(action);
     }

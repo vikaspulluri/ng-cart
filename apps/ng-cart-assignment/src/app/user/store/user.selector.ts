@@ -8,8 +8,3 @@ export const selectUserCollections = createSelector(
     selectUser,
     (state: UserState) => state.collections
 );
-
-export const selectUserAddresses = createSelector(
-    selectUser,
-    (state: UserState) => state.addresses
-)

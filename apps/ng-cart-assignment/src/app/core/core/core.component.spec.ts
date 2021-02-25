@@ -4,16 +4,12 @@ import {
   TestBed,
   tick,
 } from '@angular/core/testing';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { SidenavBarComponent } from '../../../../src/app/shared/components/sidenav-bar/sidenav-bar.component';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
-import { SharedModule } from '../../../../src/app/shared/shared.module';
-import { mockBooks } from '../../../../src/test/mocks';
-import { mapQuantityWithObject } from '../core.utility';
+import { SharedFacade } from '../../shared/store/shared.facade';
 
 import { CoreComponent } from './core.component';
 
@@ -21,17 +17,24 @@ describe('CoreComponent', () => {
   let component: CoreComponent;
   let fixture: ComponentFixture<CoreComponent>;
   let store: MockStore;
+  let sharedFacade: SharedFacade;
+  let initialState = {
+    shared: {
+      progressbar: false
+    }
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CoreComponent, SidenavBarComponent],
-      providers: [provideMockStore({})],
+      providers: [provideMockStore({initialState}), SharedFacade],
       imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
     }).compileComponents();
   });
 
   beforeEach(() => {
     store = TestBed.inject(MockStore);
+    sharedFacade = TestBed.inject(SharedFacade);
     fixture = TestBed.createComponent(CoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

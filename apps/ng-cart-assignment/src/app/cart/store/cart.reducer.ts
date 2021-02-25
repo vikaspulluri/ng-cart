@@ -18,7 +18,7 @@ const cartReducer = createReducer(
   on(CartActions.addItem, (state, { item }) => {
     const items = [...state.items];
     const addedProductIndex = items.findIndex(
-      (product) => product && product.product?.id === item?.id
+      (product) => product && product.product.id === item.id
     );
     if (addedProductIndex > -1 && items[addedProductIndex].quantity) {
       items[addedProductIndex] = {
@@ -39,7 +39,7 @@ const cartReducer = createReducer(
     let index = -1;
     if (id) {
       index = items.findIndex(
-        (item) => !!item && !!item.product && item?.product?.id === id
+        (item) => !!item && !!item.product && item.product.id === id
       );
     }
     if (index > -1) {
@@ -56,7 +56,7 @@ const cartReducer = createReducer(
   })),
   on(CartActions.decrementQuantity, (state, { id }) => {
     const items = [...state.items];
-    const itemIndex = items.findIndex((item) => item?.product?.id === id);
+    const itemIndex = items.findIndex((item) => item.product.id === id);
     if (itemIndex > -1) {
       items[itemIndex] = {
         quantity: items[itemIndex].quantity - 1,
@@ -73,7 +73,7 @@ const cartReducer = createReducer(
   }),
   on(CartActions.incrementQuantity, (state, { id }) => {
     const items = [...state.items];
-    const itemIndex = items.findIndex((item) => item?.product?.id === id);
+    const itemIndex = items.findIndex((item) => item.product.id === id);
     if (itemIndex > -1) {
       items[itemIndex] = {
         quantity: items[itemIndex].quantity + 1,

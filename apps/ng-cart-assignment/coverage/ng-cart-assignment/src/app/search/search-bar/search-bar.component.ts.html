@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.76% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/17</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -140,35 +140,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
@@ -197,35 +197,35 @@ import { SharedFacade } from '../../shared/store/shared.facade';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit, OnDestroy, AfterViewInit {
-  @Input('label') <span class="cstat-no" title="statement not covered" >label = 'Search';</span>
-  @Input('placeholder') <span class="cstat-no" title="statement not covered" >placeholder: string = this.label;</span>
-  @Input('value') <span class="cstat-no" title="statement not covered" >value = '';</span>
+  @Input('label') label = 'Search';
+  @Input('placeholder') placeholder: string = this.label;
+  @Input('value') value = '';
 &nbsp;
   @ViewChild('searchBox') searchBox: ElementRef&lt;HTMLInputElement&gt;;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  subscriptions: Subscription[] = [];</span>
+  subscriptions: Subscription[] = [];
 &nbsp;
-<span class="fstat-no" title="function not covered" >  constructor(private <span class="cstat-no" title="statement not covered" >s</span>earchFacade: S</span>earchFacade, private <span class="cstat-no" title="statement not covered" >sharedFacade: S</span>haredFacade) {}
+  constructor(private searchFacade: SearchFacade, private sharedFacade: SharedFacade) {}
 &nbsp;
-<span class="fstat-no" title="function not covered" >  ngOnInit(</span>): void {}
+  ngOnInit(): void {}
 &nbsp;
-<span class="fstat-no" title="function not covered" >  ngAfterViewInit(</span>): void {
-    const typeahead = <span class="cstat-no" title="statement not covered" >fromEvent(this.searchBox.nativeElement, 'input').pipe(</span>
-      map(<span class="fstat-no" title="function not covered" >(e</span>: Event) =&gt; (<span class="cstat-no" title="statement not covered" >e.target as HTMLInputElement).value)</span>,
-      filter(<span class="fstat-no" title="function not covered" >(t</span>ext) =&gt; <span class="cstat-no" title="statement not covered" >text.length &gt;= 2)</span>,
+  ngAfterViewInit(): void {
+    const typeahead = fromEvent(this.searchBox.nativeElement, 'input').pipe(
+      map((e: Event) =&gt; (e.target as HTMLInputElement).value),
+      filter((text) =&gt; text.length &gt;= 2),
       debounceTime(500),
       distinctUntilChanged(),
-      switchMap(<span class="fstat-no" title="function not covered" >(s</span>earchTerm) =&gt; {
-<span class="cstat-no" title="statement not covered" >        this.searchFacade.searchQuery(searchTerm);</span>
-<span class="cstat-no" title="statement not covered" >        this.sharedFacade.showProgressbar();</span>
-<span class="cstat-no" title="statement not covered" >        return EMPTY;</span>
+      switchMap((searchTerm) =&gt; {
+        this.searchFacade.searchQuery(searchTerm);
+        this.sharedFacade.showProgressbar();
+        return EMPTY;
       })
     );
-<span class="cstat-no" title="statement not covered" >    this.subscriptions.push(typeahead.subscribe());</span>
+    this.subscriptions.push(typeahead.subscribe());
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  ngOnDestroy(</span>): void {
-<span class="cstat-no" title="statement not covered" >    this.subscriptions.forEach(<span class="fstat-no" title="function not covered" >(s</span>ub) =&gt; <span class="cstat-no" title="statement not covered" >sub.unsubscribe())</span>;</span>
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) =&gt; sub.unsubscribe());
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -235,7 +235,7 @@ export class SearchBarComponent implements OnInit, OnDestroy, AfterViewInit {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Feb 22 2021 18:31:56 GMT+0530 (India Standard Time)
+                at Thu Feb 25 2021 11:58:42 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

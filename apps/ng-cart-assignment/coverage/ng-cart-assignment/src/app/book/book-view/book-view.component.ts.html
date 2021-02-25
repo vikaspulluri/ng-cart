@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -124,43 +124,43 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -177,25 +177,25 @@ import { CartFacade } from '../../cart/store/cart.facade';
 export class BookViewComponent implements OnInit, OnDestroy {
   id: string | null;
   book: Book;
-<span class="cstat-no" title="statement not covered" >  subscriptions: Subscription[] = [];</span>
+  subscriptions: Subscription[] = [];
   quantity: number;
-<span class="fstat-no" title="function not covered" >  constructor(</span>
-    private <span class="cstat-no" title="statement not covered" >route: A</span>ctivatedRoute,
-    private <span class="cstat-no" title="statement not covered" >router: R</span>outer,
-    private <span class="cstat-no" title="statement not covered" >cartFacade: C</span>artFacade
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private cartFacade: CartFacade
   ) {}
 &nbsp;
-<span class="fstat-no" title="function not covered" >  ngOnInit(</span>): void {
-<span class="cstat-no" title="statement not covered" >    this.book = this.route.snapshot.data.book;</span>
+  ngOnInit(): void {
+    this.book = this.route.snapshot.data.book;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    this.subscriptions.push(</span>
-      this.cartFacade.getCartItems().subscribe(<span class="fstat-no" title="function not covered" >cartItems </span>=&gt; {
-<span class="cstat-no" title="statement not covered" >        if (cartItems &amp;&amp; cartItems.length) {</span>
-          const bookAddedToCart = <span class="cstat-no" title="statement not covered" >cartItems.find(</span>
-<span class="fstat-no" title="function not covered" >            (i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item?.product?.id === this.book?.id</span>
+    this.subscriptions.push(
+      this.cartFacade.getCartItems().subscribe(cartItems =&gt; {
+        if (cartItems &amp;&amp; cartItems.length) {
+          const bookAddedToCart = cartItems.find(
+            (item) =&gt; item.product.id === this.book.id
           );
-<span class="cstat-no" title="statement not covered" >          if (bookAddedToCart) {</span>
-<span class="cstat-no" title="statement not covered" >            this.quantity = bookAddedToCart.quantity;</span>
+          if (bookAddedToCart) {
+            this.quantity = bookAddedToCart.quantity;
           }
         }
       }),
@@ -203,17 +203,17 @@ export class BookViewComponent implements OnInit, OnDestroy {
     );
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  addToCart(</span>): void {
-<span class="cstat-no" title="statement not covered" >    this.cartFacade.addItem(this.book);</span>
+  addToCart(): void {
+    this.cartFacade.addItem(this.book);
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  buy(</span>): void {
-<span class="cstat-no" title="statement not covered" >    this.addToCart();</span>
-<span class="cstat-no" title="statement not covered" >    this.router.navigate(['/checkout']);</span>
+  buy(): void {
+    this.addToCart();
+    this.router.navigate(['/checkout']);
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  ngOnDestroy(</span>): void {
-<span class="cstat-no" title="statement not covered" >    this.subscriptions.forEach(<span class="fstat-no" title="function not covered" >(s</span>ub) =&gt; <span class="cstat-no" title="statement not covered" >sub.unsubscribe())</span>;</span>
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) =&gt; sub.unsubscribe());
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -223,7 +223,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Feb 22 2021 18:31:56 GMT+0530 (India Standard Time)
+                at Thu Feb 25 2021 11:58:42 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

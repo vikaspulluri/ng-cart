@@ -12,6 +12,9 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { SnackbarService } from '../../../../src/app/shared/services/snackbar.service';
 import { mockBooks } from '../../../../src/test/mocks';
+import { CartFacade } from '../../cart/store/cart.facade';
+import { SharedFacade } from '../../shared/store/shared.facade';
+import { CheckoutFacade } from '../store/checkout.facade';
 
 import { BillingInfoComponent } from './billing-info.component';
 
@@ -21,6 +24,9 @@ describe('BillingInfoComponent', () => {
   let store: MockStore;
   let router: Router;
   let snackbar: SnackbarService;
+  let cartFacade: CartFacade;
+  let sharedFacade: SharedFacade;
+  let checkoutFacade: CheckoutFacade;
   const initialState = {
     user: {
       collections: [],
@@ -31,7 +37,7 @@ describe('BillingInfoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BillingInfoComponent],
-      providers: [provideMockStore({ initialState }), SnackbarService],
+      providers: [provideMockStore({ initialState }), SnackbarService, CartFacade, SharedFacade, CheckoutFacade],
       imports: [
         RouterTestingModule,
         BrowserAnimationsModule,
@@ -45,6 +51,9 @@ describe('BillingInfoComponent', () => {
     router = TestBed.inject(Router);
     store = TestBed.inject(MockStore);
     snackbar = TestBed.inject(SnackbarService);
+    cartFacade = TestBed.inject(CartFacade);
+    sharedFacade = TestBed.inject(SharedFacade);
+    checkoutFacade = TestBed.inject(CheckoutFacade);
     fixture = TestBed.createComponent(BillingInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

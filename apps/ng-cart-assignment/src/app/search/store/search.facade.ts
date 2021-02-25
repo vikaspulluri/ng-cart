@@ -14,10 +14,6 @@ export class SearchFacade {
         this.dispatch(SearchActions.searchQuery({query}))
     }
 
-    searchResults(results: SearchResult) {
-        this.dispatch(SearchActions.searchResults({results}));
-    }
-
     getSearchResults() {
         return this.store.select(fromSearch.selectSearchResults);
     }

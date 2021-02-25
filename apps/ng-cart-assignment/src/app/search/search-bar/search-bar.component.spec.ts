@@ -8,6 +8,8 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
+import { SharedFacade } from '../../shared/store/shared.facade';
+import { SearchFacade } from '../store/search.facade';
 
 import { SearchBarComponent } from './search-bar.component';
 
@@ -15,6 +17,8 @@ describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
   let fixture: ComponentFixture<SearchBarComponent>;
   let store: MockStore;
+  let searchFacade: SearchFacade;
+  let sharedFacade: SharedFacade;
   const initialState = {
     books: {},
     search: {},
@@ -23,12 +27,14 @@ describe('SearchBarComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SearchBarComponent],
       imports: [BrowserAnimationsModule, MaterialModule],
-      providers: [provideMockStore({ initialState })],
+      providers: [provideMockStore({ initialState }), SearchFacade, SharedFacade],
     }).compileComponents();
   });
 
   beforeEach(() => {
     store = TestBed.inject(MockStore);
+    searchFacade = TestBed.inject(SearchFacade);
+    sharedFacade = TestBed.inject(SharedFacade);
     fixture = TestBed.createComponent(SearchBarComponent);
     component = fixture.componentInstance;
     component.label = 'Search';

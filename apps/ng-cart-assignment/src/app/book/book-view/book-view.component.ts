@@ -27,7 +27,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
       this.cartFacade.getCartItems().subscribe(cartItems => {
         if (cartItems && cartItems.length) {
           const bookAddedToCart = cartItems.find(
-            (item) => item?.product?.id === this.book?.id
+            (item) => item.product.id === this.book.id
           );
           if (bookAddedToCart) {
             this.quantity = bookAddedToCart.quantity;

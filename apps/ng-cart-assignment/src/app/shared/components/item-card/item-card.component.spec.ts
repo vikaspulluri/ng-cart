@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { mockBooks } from '../../../../test/mocks';
 
 import { ItemCardComponent } from './item-card.component';
 
@@ -16,6 +17,9 @@ describe('ItemCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ItemCardComponent);
     component = fixture.componentInstance;
+    component.item = mockBooks[0];
+    component.quantity = 1;
+    component.options = {classNames: ['item-card']};
     fixture.detectChanges();
   });
 

@@ -14,6 +14,12 @@ import { BookService } from '../book.service';
 import { BookListComponent } from './book-list.component';
 import { mockBooks } from '../../../../src/test/mocks';
 import { ItemCardComponent } from '../../shared/components/item-card/item-card.component';
+import { CartFacade } from '../../cart/store/cart.facade';
+import { BookFacade } from '../store/book.facade';
+import { SearchFacade } from '../../search/store/search.facade';
+import { CommonUtilService } from '../../shared/services/common-util.service';
+import { Router } from '@angular/router';
+import { SharedFacade } from '../../shared/store/shared.facade';
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -28,6 +34,14 @@ describe('BookListComponent', () => {
   };
   let store: MockStore;
   let snackbarService: SnackbarService;
+  let cartFacade: CartFacade;
+  let bookFacade: BookFacade;
+  let searchFacade: SearchFacade;
+  let commonUtilService: CommonUtilService;
+  const router = {
+    navigate: jasmine.createSpy('navigate'),
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BookListComponent, SearchBarComponent, ItemCardComponent],
@@ -35,6 +49,12 @@ describe('BookListComponent', () => {
         provideMockStore({ initialState }),
         SnackbarService,
         HttpClientTestingModule,
+        CartFacade,
+        BookFacade,
+        SearchFacade,
+        CommonUtilService,
+        {provide: Router, useValue: router},
+        SharedFacade
       ],
       imports: [BrowserAnimationsModule, MaterialModule],
     }).compileComponents();
@@ -43,6 +63,10 @@ describe('BookListComponent', () => {
   beforeEach(() => {
     store = TestBed.inject(MockStore);
     snackbarService = TestBed.inject(SnackbarService);
+    cartFacade = TestBed.inject(CartFacade);
+    bookFacade = TestBed.inject(BookFacade);
+    searchFacade = TestBed.inject(SearchFacade);
+    commonUtilService = TestBed.inject(CommonUtilService);
     fixture = TestBed.createComponent(BookListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -79,4 +103,20 @@ describe('BookListComponent', () => {
     store.setState(state);
     expect(component.books).toEqual([]);
   });
+
+  it('should add book to cart', () => {
+    const storeDispatchSpy = spyOn(store, 'dispatch');
+    component.addToCart(mockBooks[0]);
+    expect(storeDispatchSpy).toHaveBeenCalled();
+  });
+
+  it('should redirect to book details page', () => {
+    component.viewBook(mockBooks[0].id);
+    expect(router.navigate).toHaveBeenCalledWith(['/books', mockBooks[0].id]);
+  })
+
+  it('should get the empty options', () => {
+    const options = commonUtilService.getCardOptions('nopage');
+    expect(options.classNames).toEqual([]);
+  })
 });

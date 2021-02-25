@@ -27,10 +27,6 @@ export class CartFacade {
         this.dispatch(CartActions.decrementQuantity({id}));
     }
 
-    clearCart() {
-        this.dispatch(CartActions.clearCart());
-    }
-
     getCartItems() {
         return this.store
         .select(fromCart.selectCartItems);

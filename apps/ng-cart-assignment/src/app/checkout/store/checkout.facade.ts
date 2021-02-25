@@ -13,14 +13,6 @@ export class CheckoutFacade {
         this.dispatch(CheckoutActions.purchase({items, user}));
     }
 
-    purchaseSuccess() {
-        this.dispatch(CheckoutActions.purchaseSuccess());
-    }
-
-    purchaseFailure() {
-        this.dispatch(CheckoutActions.purchaseFailure());
-    }
-
     dispatch(action: Action) {
         this.store.dispatch(action);
     }

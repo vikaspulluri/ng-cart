@@ -3,6 +3,8 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { mockBooks } from '../../../../src/test/mocks';
 import { ItemCardComponent } from '../../shared/components/item-card/item-card.component';
+import { CommonUtilService } from '../../shared/services/common-util.service';
+import { UserFacade } from '../store/user.facade';
 
 import { CollectionComponent } from './collection.component';
 
@@ -10,7 +12,8 @@ describe('CollectionComponent', () => {
   let component: CollectionComponent;
   let fixture: ComponentFixture<CollectionComponent>;
   let store: MockStore;
-
+  let userFacade: UserFacade;
+  let commonUtilService: CommonUtilService;
   const initialState = {
     user: {}
   };
@@ -19,12 +22,14 @@ describe('CollectionComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CollectionComponent, ItemCardComponent],
       imports: [MaterialModule],
-      providers: [provideMockStore({ initialState })],
+      providers: [provideMockStore({ initialState }), UserFacade, CommonUtilService],
     }).compileComponents();
   });
 
   beforeEach(() => {
     store = TestBed.inject(MockStore);
+    userFacade = TestBed.inject(UserFacade);
+    commonUtilService: TestBed.inject(CommonUtilService);
     fixture = TestBed.createComponent(CollectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

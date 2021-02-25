@@ -9,6 +9,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { mockBooks } from '../../../../src/test/mocks';
+import { ItemCardComponent } from '../../shared/components/item-card/item-card.component';
+import { CommonUtilService } from '../../shared/services/common-util.service';
+import { CartFacade } from '../store/cart.facade';
 
 import { CartViewComponent } from './cart-view.component';
 
@@ -16,6 +19,8 @@ describe('CartViewComponent', () => {
   let component: CartViewComponent;
   let fixture: ComponentFixture<CartViewComponent>;
   let store: MockStore;
+  let cartFacade: CartFacade;
+  let utilService: CommonUtilService;
   const router = {
     navigate: jasmine.createSpy('navigate'),
   };
@@ -27,17 +32,21 @@ describe('CartViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CartViewComponent],
+      declarations: [CartViewComponent, ItemCardComponent],
       imports: [RouterTestingModule, MaterialModule, FormsModule],
       providers: [
         provideMockStore({ initialState }),
         { provide: Router, useValue: router },
+        CartFacade,
+        CommonUtilService
       ],
     }).compileComponents();
   });
 
   beforeEach(() => {
     store = TestBed.inject(MockStore);
+    cartFacade = TestBed.inject(CartFacade);
+    utilService = TestBed.inject(CommonUtilService);
     fixture = TestBed.createComponent(CartViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
