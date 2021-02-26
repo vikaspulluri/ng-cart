@@ -18,11 +18,11 @@ describe('CoreComponent', () => {
   let fixture: ComponentFixture<CoreComponent>;
   let store: MockStore;
   let sharedFacade: SharedFacade;
-  let initialState = {
+  const initialState = {
     shared: {
       progressbar: false
     }
-  }
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

@@ -74,12 +74,12 @@ describe('CheckoutEffects', () => {
       email: 'vik@gmail.com',
       phone: 1234567890,
       address: 'Some street'
-    }
-    actions$ = of(CheckoutActions.purchase({user: user, items: [{quantity: 1, product: mockBooks[0]}]}));
+    };
+    actions$ = of(CheckoutActions.purchase({user, items: [{quantity: 1, product: mockBooks[0]}]}));
     effects.purchase$.subscribe((res) => {
       done();
     }, error => {
       done();
-    })
-  })
+    });
+  });
 });

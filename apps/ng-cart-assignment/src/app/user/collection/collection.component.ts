@@ -15,7 +15,6 @@ export class CollectionComponent implements OnInit, OnDestroy {
   trackByFn = trackByFn;
   subscriptions: Subscription[] = [];
   layoutOptions = this.commonUtilService.getCardOptions('collection');
-  
   constructor(private userFacade: UserFacade, private commonUtilService: CommonUtilService) {}
 
   ngOnInit(): void {

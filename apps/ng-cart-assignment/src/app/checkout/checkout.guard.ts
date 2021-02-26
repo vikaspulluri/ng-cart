@@ -30,7 +30,7 @@ export class CheckoutGuard implements CanActivate {
           switchMap(async (cartItems) => {
             return cartItems && cartItems.length ? true : this.router.navigate(['/cart']);
           })
-        )
+        );
   }
 
   constructor(private router: Router, private cartFacade: CartFacade) {}

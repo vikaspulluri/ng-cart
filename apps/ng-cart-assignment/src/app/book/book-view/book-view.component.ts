@@ -33,8 +33,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
             this.quantity = bookAddedToCart.quantity;
           }
         }
-      }),
-      
+      })
     );
   }
 

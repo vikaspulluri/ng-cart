@@ -95,5 +95,5 @@ describe('BookViewComponent', () => {
     component.buy();
     expect(storeDispatchSpy).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['/checkout']);
-  })
+  });
 });

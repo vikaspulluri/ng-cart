@@ -29,7 +29,7 @@ describe('CollectionComponent', () => {
   beforeEach(() => {
     store = TestBed.inject(MockStore);
     userFacade = TestBed.inject(UserFacade);
-    commonUtilService: TestBed.inject(CommonUtilService);
+    commonUtilService = TestBed.inject(CommonUtilService);
     fixture = TestBed.createComponent(CollectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -60,8 +60,8 @@ describe('CollectionComponent', () => {
           },
         ],
       }
-    }
+    };
     store.setState(state);
     expect(state.user.collections.length).toEqual(1);
-  })
+  });
 });

@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { layoutConfig } from "../shared.config";
+import { Injectable } from '@angular/core';
+import { layoutConfig } from '../shared.config';
 
 @Injectable()
 export class CommonUtilService {

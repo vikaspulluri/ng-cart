@@ -55,11 +55,11 @@ export class BookListComponent implements OnInit, OnDestroy {
     );
   }
 
-  addToCart(book: Book) {
+  addToCart(book: Book): void {
     this.cartFacade.addItem(book);
   }
 
-  viewBook(bookId: string) {
+  viewBook(bookId: string): void {
     this.router.navigate(['/books', bookId]);
   }
 

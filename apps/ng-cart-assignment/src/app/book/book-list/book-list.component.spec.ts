@@ -113,10 +113,10 @@ describe('BookListComponent', () => {
   it('should redirect to book details page', () => {
     component.viewBook(mockBooks[0].id);
     expect(router.navigate).toHaveBeenCalledWith(['/books', mockBooks[0].id]);
-  })
+  });
 
   it('should get the empty options', () => {
     const options = commonUtilService.getCardOptions('nopage');
     expect(options.classNames).toEqual([]);
-  })
+  });
 });
