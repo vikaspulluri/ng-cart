@@ -43,7 +43,6 @@ describe('SearchEffects', () => {
     const spy = spyOn(searchService, 'search').and.callThrough();
     actions$ = of(SearchActions.searchQuery({ query: 'angular' }));
     effects.searchQuery$.subscribe((response) => {
-      console.log('response', response);
       expect(spy).toHaveBeenCalled();
       done();
     });
