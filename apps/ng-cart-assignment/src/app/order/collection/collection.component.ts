@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { trackByFn } from '../../../../src/app/core/core.utility';
-import { Collection } from '../user.model';
+import { trackByFn } from '../../core/core.utility';
+import { Collection } from '../order.model';
 import { CommonUtilService } from '../../shared/services/common-util.service';
-import { UserFacade } from '../store/user.facade';
+import { AppFacade } from '../../store/app.facade';
 
 @Component({
   selector: 'app-collection',
@@ -15,11 +15,11 @@ export class CollectionComponent implements OnInit, OnDestroy {
   trackByFn = trackByFn;
   subscriptions: Subscription[] = [];
   layoutOptions = this.commonUtilService.getCardOptions('collection');
-  constructor(private userFacade: UserFacade, private commonUtilService: CommonUtilService) {}
+  constructor(private appFacade: AppFacade, private commonUtilService: CommonUtilService) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.userFacade.getUserCollections()
+      this.appFacade.getUserCollections()
         .subscribe((collections) => {
           if (collections) {
             this.collections = collections;

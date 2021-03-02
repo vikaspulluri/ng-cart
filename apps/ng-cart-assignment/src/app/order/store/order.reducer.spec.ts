@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import * as fromUser from './user.reducer';
-import * as UserActions from './user.actions';
-import { mockBooks } from '../../../../src/test/mocks';
+import * as fromUser from './order.reducer';
+import * as OrderActions from './order.actions';
+import { mockBooks } from '../../../test/mocks';
 
 describe('UserReducer', () => {
   let store: MockStore;
@@ -31,7 +31,7 @@ describe('UserReducer', () => {
     };
     const state = fromUser.reducer(
       initialState,
-      UserActions.addItemsToCollection(collection)
+      OrderActions.addItemsToCollection(collection)
     );
     expect(state.collections.length).toEqual(1);
   });
@@ -46,7 +46,7 @@ describe('UserReducer', () => {
     };
     const state = fromUser.reducer(
       initialState,
-      UserActions.addAddress({ user })
+      OrderActions.addAddress({ user })
     );
     expect(state.addresses.length).toEqual(1);
   });

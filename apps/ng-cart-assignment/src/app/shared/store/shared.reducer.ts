@@ -4,11 +4,11 @@ import * as SharedActions from './shared.actions';
 
 export const featurekey = sharedFeatureKey;
 
-export interface State {
+export interface SharedState {
   progressbar: boolean;
 }
 
-export const initialState: State = {
+export const initialState: SharedState = {
   progressbar: false,
 };
 
@@ -24,6 +24,6 @@ const sharedReducer = createReducer(
   }))
 );
 
-export function reducer(state: State | undefined, action: Action): State {
+export function reducer(state: SharedState | undefined, action: Action): SharedState {
   return sharedReducer(state, action);
 }

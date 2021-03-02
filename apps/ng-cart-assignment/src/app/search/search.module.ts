@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { SearchService } from './search.service';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromSearchEffects from './store/search.effects';
-import { SearchFacade } from './store/search.facade';
 
 @NgModule({
   declarations: [SearchBarComponent],
@@ -21,6 +20,6 @@ import { SearchFacade } from './store/search.facade';
     EffectsModule.forFeature([fromSearchEffects.SearchEffects]),
   ],
   exports: [SearchBarComponent],
-  providers: [SearchService, SearchFacade],
+  providers: [SearchService],
 })
 export class SearchModule {}

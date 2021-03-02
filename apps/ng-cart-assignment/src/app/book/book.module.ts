@@ -12,7 +12,6 @@ import { SearchModule } from '../search/search.module';
 import { BookService } from './book.service';
 import { FormsModule } from '@angular/forms';
 import { CartModule } from '../cart/cart.module';
-import { BookFacade } from './store/book.facade';
 
 @NgModule({
   declarations: [BookListComponent, BookViewComponent],
@@ -27,6 +26,6 @@ import { BookFacade } from './store/book.facade';
     StoreModule.forFeature(fromBooks.featureKey, fromBooks.reducer),
   ],
   exports: [BookListComponent, BookViewComponent],
-  providers: [BookService, BookFacade],
+  providers: [BookService],
 })
 export class BookModule {}

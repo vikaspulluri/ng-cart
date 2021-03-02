@@ -19,8 +19,8 @@ export const routes: Routes = [
       import('./checkout/checkout.module').then((m) => m.CheckoutModule),
   },
   {
-    path: 'user',
-    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    path: 'orders',
+    loadChildren: () => import('./order/order.module').then((m) => m.OrderModule),
   },
   { path: 'page-not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/page-not-found' },

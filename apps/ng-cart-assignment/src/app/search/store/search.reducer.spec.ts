@@ -20,12 +20,11 @@ describe('SearchReducer', () => {
       initialState,
       SearchActions.searchQuery({ query: 'angular' })
     );
-    expect(state.searchQuery).toEqual('angular');
-
     state = fromSearch.reducer(
       initialState,
       SearchActions.searchResults({
         results: { kind: 'volume', totalItems: 100, items: mockBooks },
+        query: state.searchQuery
       })
     );
     expect(state.searchResults).toBeDefined();

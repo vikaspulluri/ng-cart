@@ -6,10 +6,21 @@ import { Action } from '@ngrx/store';
 import { SearchEffects } from './search.effects';
 import { SearchService } from '../search.service';
 import * as SearchActions from './search.actions';
+import { SnackbarService } from '../../shared/services/snackbar.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 class MockSearchService {
   search(query: string): Observable<any> {
     return of({ kind: 'volume', items: [] });
+  }
+}
+
+class MockSnabarService {
+  open(message: string): null {
+    return null;
+  }
+  close(): null {
+    return null;
   }
 }
 
@@ -18,6 +29,7 @@ describe('SearchEffects', () => {
   let effects: SearchEffects;
   let store: MockStore;
   let searchService: SearchService;
+  let snackbarService: SnackbarService;
   const initialState = {
     search: {
       searchResults: [],
@@ -32,9 +44,11 @@ describe('SearchEffects', () => {
         provideMockActions(() => actions$),
         provideMockStore({ initialState }),
         { provide: SearchService, useClass: MockSearchService },
+        {provide: SnackbarService, useClass: MockSnabarService}
       ],
     });
     effects = TestBed.inject(SearchEffects);
+    snackbarService = TestBed.inject(SnackbarService);
     store = TestBed.inject(MockStore);
     searchService = TestBed.inject(SearchService);
   });

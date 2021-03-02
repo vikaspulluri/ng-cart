@@ -6,8 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromCheckoutEffects from './store/checkout.effects';
-import { CheckoutFacade } from './store/checkout.facade';
-import { CartModule } from '../cart/cart.module';
 
 @NgModule({
   declarations: [BillingInfoComponent],
@@ -18,6 +16,6 @@ import { CartModule } from '../cart/cart.module';
     EffectsModule.forFeature([fromCheckoutEffects.CheckoutEffects]),
     CheckoutRoutingModule,
   ],
-  providers: [CheckoutFacade]
+  providers: []
 })
 export class CheckoutModule {}

@@ -8,7 +8,7 @@ import * as CheckoutActions from './checkout.actions';
 import { SearchService } from '../../search/search.service';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import { Router } from '@angular/router';
-import { User } from '../../user/user.model';
+import { User } from '../../order/order.model';
 import { mockBooks } from '../../../test/mocks';
 
 class MockSnabarService {

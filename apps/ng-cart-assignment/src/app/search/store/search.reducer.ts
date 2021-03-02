@@ -5,13 +5,13 @@ import * as SearchActions from './search.actions';
 
 export const featureKey = searchFeatureKey;
 
-export interface State {
+export interface SearchState {
   searchQuery: string;
   recentQueries: string[];
   searchResults: SearchResult | null;
 }
 
-export const initialState: State = {
+export const initialState: SearchState = {
   searchQuery: '',
   recentQueries: [],
   searchResults: null,
@@ -19,17 +19,20 @@ export const initialState: State = {
 
 const searchReducer = createReducer(
   initialState,
-  on(SearchActions.searchQuery, (state, { query }) => ({
-    ...state,
-    searchQuery: query,
-    recentQueries: [query, ...state.recentQueries],
-  })),
-  on(SearchActions.searchResults, (state, { results }) => ({
+  on(SearchActions.searchResults, (state, { results, query }) => ({
     ...state,
     searchResults: results,
+    searchQuery: query,
+    recentQueries: [query, ...state.recentQueries]
+  })),
+  on(SearchActions.searchResultsFailed, (state, { error, query }) => ({
+    ...state,
+    searchResults: null,
+    searchQuery: query,
+    recentQueries: [query, ...state.recentQueries]
   }))
 );
 
-export function reducer(state: State | undefined, action: Action): State {
+export function reducer(state: SearchState | undefined, action: Action): SearchState {
   return searchReducer(state, action);
 }

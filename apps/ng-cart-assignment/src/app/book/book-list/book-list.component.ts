@@ -9,9 +9,7 @@ import {
 import { SnackbarService } from '../../../../src/app/shared/services/snackbar.service';
 import { CommonUtilService } from '../../shared/services/common-util.service';
 import { Book } from '../book.model';
-import { BookFacade } from '../store/book.facade';
-import { CartFacade } from '../../cart/store/cart.facade';
-import { SearchFacade } from '../../search/store/search.facade';
+import { AppFacade } from '../../store/app.facade';
 
 @Component({
   selector: 'app-book-list',
@@ -30,24 +28,22 @@ export class BookListComponent implements OnInit, OnDestroy {
     private snackbarService: SnackbarService,
     private commonUtilService: CommonUtilService,
     private router: Router,
-    private bookFacade: BookFacade,
-    private cartFacade: CartFacade,
-    private searchFacade: SearchFacade
+    private appFacade: AppFacade
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.searchFacade.getSearchResults().subscribe((result) => {
+      this.appFacade.getSearchResults().subscribe((result) => {
         if (result) {
           const items = result.items || [];
           if (items.length === 0) {
             this.snackbarService.open(MESSAGES.NO_RESULTS);
           }
-          this.bookFacade.bookResults(items);
+          this.appFacade.bookResults(items);
           this.books = items;
         }
       }),
-      this.cartFacade.getCartItems().subscribe(cartItems => {
+      this.appFacade.getCartItems().subscribe(cartItems => {
         if (cartItems && cartItems.length > 0) {
           this.quantityMap = mapQuantityWithObject(cartItems);
         }
@@ -56,7 +52,7 @@ export class BookListComponent implements OnInit, OnDestroy {
   }
 
   addToCart(book: Book): void {
-    this.cartFacade.addItem(book);
+    this.appFacade.addItem(book);
   }
 
   viewBook(bookId: string): void {

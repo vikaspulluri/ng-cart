@@ -5,9 +5,10 @@ import {
   mapQuantityWithObject,
   trackByFn,
 } from '../../../../src/app/core/core.utility';
+import { Book } from '../../book/book.model';
 import { CommonUtilService } from '../../shared/services/common-util.service';
 import { CartItem } from '../cart.model';
-import { CartFacade } from '../store/cart.facade';
+import { AppFacade } from '../../store/app.facade';
 
 @Component({
   selector: 'app-cart-view',
@@ -23,11 +24,11 @@ export class CartViewComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private commonUtilService: CommonUtilService,
-    private cartFacade: CartFacade) {}
+    private appFacade: AppFacade) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.cartFacade.getCartItems().subscribe(items => {
+      this.appFacade.getCartItems().subscribe(items => {
         this.cartItems = items;
         this.quantityMap = mapQuantityWithObject(this.cartItems);
       })
@@ -38,21 +39,21 @@ export class CartViewComponent implements OnInit, OnDestroy {
     if (!id) {
       return;
     }
-    this.cartFacade.removeItem(id);
+    this.appFacade.removeItem(id);
   }
 
-  incrementQuantity(id: string | undefined): void {
-    if (!id) {
+  incrementQuantity(book: Book | undefined): void {
+    if (!book) {
       return;
     }
-    this.cartFacade.incrementQuantity(id);
+    this.appFacade.addItem(book);
   }
 
   decrementQuantity(id: string | undefined): void {
     if (!id) {
       return;
     }
-    this.cartFacade.decrementQuantity(id);
+    this.appFacade.decrementQuantity(id);
   }
 
   proceedToCheckout(): void {

@@ -11,7 +11,7 @@ import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { mockBooks } from '../../../../src/test/mocks';
 import { ItemCardComponent } from '../../shared/components/item-card/item-card.component';
 import { CommonUtilService } from '../../shared/services/common-util.service';
-import { CartFacade } from '../store/cart.facade';
+import { AppFacade } from '../../store/app.facade';
 
 import { CartViewComponent } from './cart-view.component';
 
@@ -19,7 +19,7 @@ describe('CartViewComponent', () => {
   let component: CartViewComponent;
   let fixture: ComponentFixture<CartViewComponent>;
   let store: MockStore;
-  let cartFacade: CartFacade;
+  let appFacade: AppFacade;
   let utilService: CommonUtilService;
   const router = {
     navigate: jasmine.createSpy('navigate'),
@@ -37,7 +37,7 @@ describe('CartViewComponent', () => {
       providers: [
         provideMockStore({ initialState }),
         { provide: Router, useValue: router },
-        CartFacade,
+        AppFacade,
         CommonUtilService
       ],
     }).compileComponents();
@@ -45,7 +45,7 @@ describe('CartViewComponent', () => {
 
   beforeEach(() => {
     store = TestBed.inject(MockStore);
-    cartFacade = TestBed.inject(CartFacade);
+    appFacade = TestBed.inject(AppFacade);
     utilService = TestBed.inject(CommonUtilService);
     fixture = TestBed.createComponent(CartViewComponent);
     component = fixture.componentInstance;
@@ -54,18 +54,6 @@ describe('CartViewComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should increment item quantity', () => {
-    const storeDispatchSpy = spyOn(store, 'dispatch');
-    component.incrementQuantity('bookId');
-    expect(storeDispatchSpy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should not increment quantity', () => {
-    const storeDispatchSpy = spyOn(store, 'dispatch');
-    component.incrementQuantity('');
-    expect(storeDispatchSpy).not.toHaveBeenCalled();
   });
 
   it('should decrement item quantity', () => {
@@ -94,6 +82,14 @@ describe('CartViewComponent', () => {
   it('should remove item from the cart', () => {
     const storeDispatchSpy = spyOn(store, 'dispatch');
     component.removeItem('bookId');
+    expect(storeDispatchSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should increment the quantity', () => {
+    const storeDispatchSpy = spyOn(store, 'dispatch');
+    component.incrementQuantity(mockBooks[0]);
+    expect(storeDispatchSpy).toHaveBeenCalledTimes(1);
+    component.incrementQuantity(undefined);
     expect(storeDispatchSpy).toHaveBeenCalledTimes(1);
   });
 });

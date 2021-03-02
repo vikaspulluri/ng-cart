@@ -5,11 +5,11 @@ import * as CartActions from './cart.actions';
 
 export const featureKey = cartFeatureKey;
 
-export interface State {
+export interface CartState {
   items: { product: CartItem; quantity: number }[];
 }
 
-export const initialState: State = {
+export const initialState: CartState = {
   items: [],
 };
 
@@ -70,23 +70,9 @@ const cartReducer = createReducer(
       ...state,
       items,
     };
-  }),
-  on(CartActions.incrementQuantity, (state, { id }) => {
-    const items = [...state.items];
-    const itemIndex = items.findIndex((item) => item.product.id === id);
-    if (itemIndex > -1) {
-      items[itemIndex] = {
-        quantity: items[itemIndex].quantity + 1,
-        product: items[itemIndex].product,
-      };
-    }
-    return {
-      ...state,
-      items,
-    };
   })
 );
 
-export function reducer(state: State | undefined, action: Action): State {
+export function reducer(state: CartState | undefined, action: Action): CartState {
   return cartReducer(state, action);
 }

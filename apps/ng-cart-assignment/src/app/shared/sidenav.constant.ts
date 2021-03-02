@@ -36,6 +36,6 @@ export const navItems: NavItem[] = [
     id: userFeatureKey,
     icon: 'library_books',
     label: 'My Collection',
-    path: '/user',
+    path: '/order',
   },
 ];

@@ -15,8 +15,7 @@ import {
   map,
   switchMap,
 } from 'rxjs/operators';
-import { SearchFacade } from '../store/search.facade';
-import { SharedFacade } from '../../shared/store/shared.facade';
+import { AppFacade } from '../../store/app.facade';
 
 @Component({
   selector: 'app-search-bar',
@@ -32,7 +31,7 @@ export class SearchBarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private searchFacade: SearchFacade, private sharedFacade: SharedFacade) {}
+  constructor(private appFacade: AppFacade) {}
 
   ngOnInit(): void {}
 
@@ -43,8 +42,8 @@ export class SearchBarComponent implements OnInit, OnDestroy, AfterViewInit {
       debounceTime(500),
       distinctUntilChanged(),
       switchMap((searchTerm) => {
-        this.searchFacade.searchQuery(searchTerm);
-        this.sharedFacade.showProgressbar();
+        this.appFacade.searchQuery(searchTerm);
+        this.appFacade.showProgressbar();
         return EMPTY;
       })
     );

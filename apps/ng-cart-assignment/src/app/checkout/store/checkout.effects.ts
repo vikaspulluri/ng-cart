@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, mapTo, mergeMap, switchMap, tap } from 'rxjs/operators';
 import * as CartActions from '../../cart/store/cart.actions';
-import * as UserActions from '../../user/store/user.actions';
+import * as OrderActions from '../../order/store/order.actions';
 import * as CheckoutActions from './checkout.actions';
 import * as SharedActions from '../../shared/store/shared.actions';
 import { Store } from '@ngrx/store';
@@ -20,17 +20,16 @@ export class CheckoutEffects {
       ofType(CheckoutActions.purchase.type),
       switchMap(({ user, items }) =>
         of(
-          UserActions.addItemsToCollection({
+          OrderActions.addItemsToCollection({
             user,
             items,
             orderId: randomKey(),
           }),
-          UserActions.addAddress({ user }),
+          OrderActions.addAddress({ user }),
           CartActions.clearCart(),
           CheckoutActions.purchaseSuccess()
         )
-      ),
-      catchError(async (error) => CheckoutActions.purchaseFailure())
+      )
     )
   );
 
@@ -39,7 +38,7 @@ export class CheckoutEffects {
       ofType(CheckoutActions.purchaseSuccess.type),
       tap(() => this.snackbarService.open(MESSAGES.PURCHASE_SUCCESS)),
       switchMap(async () => SharedActions.hideProgressBar()),
-      tap(() => this.router.navigate(['/user']))
+      tap(() => this.router.navigate(['/orders']))
     )
   );
 
@@ -48,7 +47,7 @@ export class CheckoutEffects {
       ofType(CheckoutActions.purchaseFailure.type),
       tap(() => this.snackbarService.open(MESSAGES.PURCHASE_FAILURE)),
       switchMap(async () => SharedActions.hideProgressBar()),
-      tap(() => this.router.navigate(['/user']))
+      tap(() => this.router.navigate(['/orders']))
     )
   );
 

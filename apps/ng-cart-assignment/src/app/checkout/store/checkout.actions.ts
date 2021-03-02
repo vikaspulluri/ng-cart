@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { CartItem } from '../../../../src/app/cart/cart.model';
-import { User } from '../../../../src/app/user/user.model';
+import { User } from '../../../../src/app/order/order.model';
 
 export const PURCHASE = '[Checkout] Purchase';
 export const PURCHASE_SUCCESS = '[Checkout] PurchaseSuccess';

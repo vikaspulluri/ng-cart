@@ -24,7 +24,7 @@
     <button mat-mini-fab color="primary">
       {{ quantityMap[cartItem!.product!.id] }}
     </button>
-    <mat-icon (click)="incrementQuantity(cartItem?.product?.id)"
+    <mat-icon (click)="incrementQuantity(cartItem?.product)"
       >add_circle</mat-icon
     >
   </div>

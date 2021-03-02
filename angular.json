@@ -98,7 +98,8 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/ng-cart-assignment/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "codeCoverageExclude": ["apps/ng-cart-assignment/src/app/book/book.resolver.ts"]
           }
         },
         "lint": {

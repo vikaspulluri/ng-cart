@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">79.17% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>19/24</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -128,9 +128,8 @@
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,8 +158,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,6 +184,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,19 +198,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SnackbarService } from '../../../../src/app/shared/services/snackbar.service';
-import { User } from '../../../../src/app/user/user.model';
+import { User } from '../../../../src/app/order/order.model';
 import { CartItem } from '../../cart/cart.model';
 import { MESSAGES } from '../../../../src/app/core/core.constants';
 import { Subscription } from 'rxjs';
-import { CartFacade } from '../../cart/store/cart.facade';
-import { SharedFacade } from '../../shared/store/shared.facade';
-import { CheckoutFacade } from '../store/checkout.facade';
+import { AppFacade } from '../../store/app.facade';
 &nbsp;
 @Component({
   selector: 'app-billing-info',
@@ -231,14 +231,12 @@ export class BillingInfoComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   constructor(
     private snackbarService: SnackbarService,
-    private cartFacade: CartFacade,
-    private sharedFacade: SharedFacade,
-    private checkoutFacade: CheckoutFacade
+    private appFacade: AppFacade
   ) {}
 &nbsp;
   ngOnInit(): void {
     this.subscriptions.push(
-      this.cartFacade.getCartItems().subscribe(cartItems =&gt; {
+      this.appFacade.getCartItems().subscribe(cartItems =&gt; {
         if (cartItems) {
           this.items = cartItems;
         }
@@ -252,17 +250,22 @@ export class BillingInfoComponent implements OnInit, OnDestroy {
       return;
     }
     const user = this.getUser();
-    this.sharedFacade.showProgressbar();
-    this.checkoutFacade.purchase(this.items, user);
+    this.appFacade.showProgressbar();
+    this.appFacade.purchase(this.items, user);
   }
 &nbsp;
   getUser(): User {
+    const firstName = this.userForm.get('firstName') &amp;&amp; this.userForm.get('firstName')!.value;
+    const lastName = this.userForm.get('lastName') &amp;&amp; this.userForm.get('lastName')!.value;
+    const email = this.userForm.get('email') &amp;&amp; this.userForm.get('email')!.value;
+    const phone = this.userForm.get('phone') &amp;&amp; this.userForm.get('phone')!.value;
+    const address = this.userForm.get('address') &amp;&amp; this.userForm.get('address')!.value;
     return {
-      firstName: this.userForm.get('firstName')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue,
-      lastName: this.userForm.get('lastName')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue,
-      email: this.userForm.get('email')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue,
-      phone: this.userForm.get('phone')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue,
-      address: this.userForm.get('address')<span class="branch-0 cbranch-no" title="branch not covered" >?.v</span>alue,
+      firstName,
+      lastName,
+      email,
+      phone,
+      address
     };
   }
 &nbsp;
@@ -277,7 +280,7 @@ export class BillingInfoComponent implements OnInit, OnDestroy {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Feb 26 2021 10:14:36 GMT+0530 (India Standard Time)
+                at Tue Mar 02 2021 15:01:05 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

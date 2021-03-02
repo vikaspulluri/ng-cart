@@ -74,53 +74,10 @@ describe('CartReducer', () => {
     expect(state.items.length).toEqual(0);
   });
 
-  it('should increment quantity', () => {
-    let state = fromCart.reducer(
-      initialState,
-      CartActions.addItem({ item: mockBooks[0] })
-    );
-    expect(state.items.length).toEqual(1);
-    expect(state.items[0].quantity).toEqual(1);
-
-    state = fromCart.reducer(
-      state,
-      CartActions.incrementQuantity({ id: 'bookId' })
-    );
-    expect(state.items.length).toEqual(1);
-    expect(state.items[0].quantity).toEqual(2);
-  });
-
-  it('should not increment quantity', () => {
-    let state = fromCart.reducer(
-      initialState,
-      CartActions.addItem({ item: mockBooks[0] })
-    );
-    expect(state.items.length).toEqual(1);
-    expect(state.items[0].quantity).toEqual(1);
-
-    state = fromCart.reducer(state, CartActions.incrementQuantity({ id: '' }));
-    expect(state.items.length).toEqual(1);
-    expect(state.items[0].quantity).toEqual(1);
-  });
-
   it('should decrement quantity', () => {
     let state = fromCart.reducer(
       initialState,
       CartActions.addItem({ item: mockBooks[0] })
-    );
-    expect(state.items.length).toEqual(1);
-    expect(state.items[0].quantity).toEqual(1);
-
-    state = fromCart.reducer(
-      state,
-      CartActions.incrementQuantity({ id: 'bookId' })
-    );
-    expect(state.items.length).toEqual(1);
-    expect(state.items[0].quantity).toEqual(2);
-
-    state = fromCart.reducer(
-      state,
-      CartActions.decrementQuantity({ id: 'bookId' })
     );
     expect(state.items.length).toEqual(1);
     expect(state.items[0].quantity).toEqual(1);

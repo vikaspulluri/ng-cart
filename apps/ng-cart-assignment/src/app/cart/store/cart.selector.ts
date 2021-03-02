@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from '../../store/app.reducer';
-import { State as CartState } from './cart.reducer';
+import { CartState } from './cart.reducer';
 
 export const selectCart = (state: AppState) => state.cart;
 

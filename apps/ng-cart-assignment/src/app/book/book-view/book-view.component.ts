@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../book.model';
 import { Subscription } from 'rxjs';
-import { CartFacade } from '../../cart/store/cart.facade';
+import { AppFacade } from '../../store/app.facade';
 
 @Component({
   selector: 'app-book-view',
@@ -17,14 +17,14 @@ export class BookViewComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private cartFacade: CartFacade
+    private appFacade: AppFacade
   ) {}
 
   ngOnInit(): void {
     this.book = this.route.snapshot.data.book;
 
     this.subscriptions.push(
-      this.cartFacade.getCartItems().subscribe(cartItems => {
+      this.appFacade.getCartItems().subscribe(cartItems => {
         if (cartItems && cartItems.length) {
           const bookAddedToCart = cartItems.find(
             (item) => item.product.id === this.book.id
@@ -38,7 +38,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
   }
 
   addToCart(): void {
-    this.cartFacade.addItem(this.book);
+    this.appFacade.addItem(this.book);
   }
 
   buy(): void {

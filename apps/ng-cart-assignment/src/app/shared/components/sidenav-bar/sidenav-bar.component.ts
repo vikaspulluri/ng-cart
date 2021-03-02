@@ -1,10 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { navItems } from '../../sidenav.constant';
-import * as fromApp from '../../../store/app.reducer';
-import { Store } from '@ngrx/store';
 import { featureKey as cartFeatureKey } from '../../../cart/store/cart.reducer';
-import { featureKey as userFeatureKey } from '../../../user/store/user.reducer';
+import { featureKey as orderFeatureKey } from '../../../order/store/order.reducer';
+import { AppFacade } from '../../../store/app.facade';
 
 @Component({
   selector: 'app-sidenav-bar',
@@ -15,14 +14,13 @@ export class SidenavBarComponent implements OnInit, OnDestroy, AfterViewInit {
   subscriptions: Subscription[] = [];
   navItems = [...navItems];
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private appFacade: AppFacade) {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.subscriptions.push(
-      this.store
-        .select((state) => state)
+      this.appFacade.getAppState()
         .subscribe((appState) => {
           const cart = appState.cart;
           const user = appState.user;
@@ -41,7 +39,7 @@ export class SidenavBarComponent implements OnInit, OnDestroy, AfterViewInit {
           if (user && user.collections) {
             const collections = user.collections;
             const navItem = this.navItems.find(
-              (item) => item.id === userFeatureKey
+              (item) => item.id === orderFeatureKey
             );
             if (navItem && collections.length) {
               navItem.notificationCount = collections.reduce(

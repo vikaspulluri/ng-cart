@@ -1,13 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SnackbarService } from '../../../../src/app/shared/services/snackbar.service';
-import { User } from '../../../../src/app/user/user.model';
+import { User } from '../../../../src/app/order/order.model';
 import { CartItem } from '../../cart/cart.model';
 import { MESSAGES } from '../../../../src/app/core/core.constants';
 import { Subscription } from 'rxjs';
-import { CartFacade } from '../../cart/store/cart.facade';
-import { SharedFacade } from '../../shared/store/shared.facade';
-import { CheckoutFacade } from '../store/checkout.facade';
+import { AppFacade } from '../../store/app.facade';
 
 @Component({
   selector: 'app-billing-info',
@@ -30,14 +28,12 @@ export class BillingInfoComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   constructor(
     private snackbarService: SnackbarService,
-    private cartFacade: CartFacade,
-    private sharedFacade: SharedFacade,
-    private checkoutFacade: CheckoutFacade
+    private appFacade: AppFacade
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.cartFacade.getCartItems().subscribe(cartItems => {
+      this.appFacade.getCartItems().subscribe(cartItems => {
         if (cartItems) {
           this.items = cartItems;
         }
@@ -51,17 +47,22 @@ export class BillingInfoComponent implements OnInit, OnDestroy {
       return;
     }
     const user = this.getUser();
-    this.sharedFacade.showProgressbar();
-    this.checkoutFacade.purchase(this.items, user);
+    this.appFacade.showProgressbar();
+    this.appFacade.purchase(this.items, user);
   }
 
   getUser(): User {
+    const firstName = this.userForm.get('firstName') && this.userForm.get('firstName')!.value;
+    const lastName = this.userForm.get('lastName') && this.userForm.get('lastName')!.value;
+    const email = this.userForm.get('email') && this.userForm.get('email')!.value;
+    const phone = this.userForm.get('phone') && this.userForm.get('phone')!.value;
+    const address = this.userForm.get('address') && this.userForm.get('address')!.value;
     return {
-      firstName: this.userForm.get('firstName')?.value,
-      lastName: this.userForm.get('lastName')?.value,
-      email: this.userForm.get('email')?.value,
-      phone: this.userForm.get('phone')?.value,
-      address: this.userForm.get('address')?.value,
+      firstName,
+      lastName,
+      email,
+      phone,
+      address
     };
   }
 

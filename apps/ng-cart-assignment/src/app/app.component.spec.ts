@@ -42,14 +42,11 @@ describe('AppComponent', () => {
   it('should load the lazy modules: cart', () => {
     router.navigate(['/cart']);
   });
-  it('should load the lazy modules: user', () => {
-    router.navigate(['/user']);
-  });
-  it('should load the lazy modules: checkout', () => {
-    router.navigate(['/checkout']);
+  it('should load the lazy modules: orders', () => {
+    router.navigate(['/orders']);
   });
 
-  it('should load the lazy modules: checkout', () => {
-    router.navigate(['/book']);
+  it('should load the lazy modules: books', () => {
+    router.navigate(['/books']);
   });
 });

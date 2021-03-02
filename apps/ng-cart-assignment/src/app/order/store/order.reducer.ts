@@ -1,17 +1,17 @@
 import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
-import { CartItem } from '../../../../src/app/cart/cart.model';
-import { userFeatureKey } from '../../../../src/app/shared/shared.constants';
-import { Collection, User } from '../user.model';
-import * as UserActions from './user.actions';
+import { CartItem } from '../../cart/cart.model';
+import { userFeatureKey } from '../../shared/shared.constants';
+import { Collection, User } from '../order.model';
+import * as UserActions from './order.actions';
 
 export const featureKey = userFeatureKey;
 
-export interface State {
+export interface OrderState {
   collections: Collection[];
   addresses: User[];
 }
 
-export const initialState: State = {
+export const initialState: OrderState = {
   collections: [],
   addresses: [],
 };
@@ -28,6 +28,6 @@ const userReducer = createReducer(
   }))
 );
 
-export function reducer(state: State | undefined, action: Action): State {
+export function reducer(state: OrderState | undefined, action: Action): OrderState {
   return userReducer(state, action);
 }

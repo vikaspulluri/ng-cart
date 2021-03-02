@@ -15,7 +15,6 @@ import { StoreModule } from '@ngrx/store';
 import { SnackbarService } from './services/snackbar.service';
 import { CommonUtilService } from './services/common-util.service';
 import { ItemCardComponent } from './components/item-card/item-card.component';
-import { SharedFacade } from './store/shared.facade';
 
 @NgModule({
   declarations: [
@@ -43,6 +42,6 @@ import { SharedFacade } from './store/shared.facade';
     PageNotFoundComponent,
     ItemCardComponent
   ],
-  providers: [SnackbarService, CommonUtilService, SharedFacade],
+  providers: [SnackbarService, CommonUtilService],
 })
 export class SharedModule {}

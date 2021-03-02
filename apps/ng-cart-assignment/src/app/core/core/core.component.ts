@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SharedFacade } from '../../shared/store/shared.facade';
+import { AppFacade } from '../../store/app.facade';
 
 @Component({
   selector: 'app-core',
@@ -10,11 +10,11 @@ import { SharedFacade } from '../../shared/store/shared.facade';
 export class CoreComponent implements OnInit, OnDestroy {
   progressbar = false;
   subscriptions: Subscription[] = [];
-  constructor(private sharedFacade: SharedFacade) {}
+  constructor(private appFacade: AppFacade) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.sharedFacade.getProgressbar().subscribe(progressbar => {
+      this.appFacade.getProgressbar().subscribe(progressbar => {
         this.progressbar = progressbar;
       })
     );

@@ -4,7 +4,7 @@ import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { mockBooks } from '../../../../src/test/mocks';
 import { ItemCardComponent } from '../../shared/components/item-card/item-card.component';
 import { CommonUtilService } from '../../shared/services/common-util.service';
-import { UserFacade } from '../store/user.facade';
+import { AppFacade } from '../../store/app.facade';
 
 import { CollectionComponent } from './collection.component';
 
@@ -12,7 +12,7 @@ describe('CollectionComponent', () => {
   let component: CollectionComponent;
   let fixture: ComponentFixture<CollectionComponent>;
   let store: MockStore;
-  let userFacade: UserFacade;
+  let appFacade: AppFacade;
   let commonUtilService: CommonUtilService;
   const initialState = {
     user: {}
@@ -22,13 +22,13 @@ describe('CollectionComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CollectionComponent, ItemCardComponent],
       imports: [MaterialModule],
-      providers: [provideMockStore({ initialState }), UserFacade, CommonUtilService],
+      providers: [provideMockStore({ initialState }), AppFacade, CommonUtilService],
     }).compileComponents();
   });
 
   beforeEach(() => {
     store = TestBed.inject(MockStore);
-    userFacade = TestBed.inject(UserFacade);
+    appFacade = TestBed.inject(AppFacade);
     commonUtilService = TestBed.inject(CommonUtilService);
     fixture = TestBed.createComponent(CollectionComponent);
     component = fixture.componentInstance;

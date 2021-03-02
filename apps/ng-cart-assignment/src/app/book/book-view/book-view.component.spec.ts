@@ -2,12 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { BarRatingModule } from 'ngx-bar-rating';
 import { of } from 'rxjs';
 import { MaterialModule } from '../../../../src/app/shared/material.module';
 import { mockBooks } from '../../../../src/test/mocks';
-import { CartFacade } from '../../cart/store/cart.facade';
+import { AppFacade } from '../../store/app.facade';
+import { BookResolverService } from '../book.resolver';
 
 import { BookViewComponent } from './book-view.component';
 
@@ -15,7 +17,7 @@ describe('BookViewComponent', () => {
   let component: BookViewComponent;
   let fixture: ComponentFixture<BookViewComponent>;
   let store: MockStore;
-  let cartFacade: CartFacade;
+  let appFacade: AppFacade;
   const router = {
     navigate: jasmine.createSpy('navigate'),
   };
@@ -31,9 +33,9 @@ describe('BookViewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BookViewComponent],
-      imports: [MaterialModule, FormsModule],
+      imports: [MaterialModule, FormsModule, BarRatingModule],
       providers: [
-        CartFacade,
+        AppFacade,
         provideMockStore({ initialState }),
         {provide: Router, useValue: router},
         {
@@ -53,7 +55,7 @@ describe('BookViewComponent', () => {
 
   beforeEach(() => {
     store = TestBed.inject(MockStore);
-    cartFacade = TestBed.inject(CartFacade);
+    appFacade = TestBed.inject(AppFacade);
     fixture = TestBed.createComponent(BookViewComponent);
     component = fixture.componentInstance;
     component.book = initialState.books.list[0];

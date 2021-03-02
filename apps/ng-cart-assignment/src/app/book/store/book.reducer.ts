@@ -5,11 +5,11 @@ import * as BookActions from './book.actions';
 
 export const featureKey = booksFeatureKey;
 
-export interface State {
+export interface BookState {
   list: Book[] | null;
 }
 
-export const initialState: State = {
+export const initialState: BookState = {
   list: [],
 };
 
@@ -21,6 +21,6 @@ const booksReducer = createReducer(
   }))
 );
 
-export function reducer(state: State | undefined, action: Action): State {
+export function reducer(state: BookState | undefined, action: Action): BookState {
   return booksReducer(state, action);
 }

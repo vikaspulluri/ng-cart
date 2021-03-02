@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap, take, map } from 'rxjs/operators';
-import { CartFacade } from '../cart/store/cart.facade';
+import { AppFacade } from '../store/app.facade';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class CheckoutGuard implements CanActivate {
     | UrlTree
     | Promise<boolean | UrlTree>
     | Observable<boolean | UrlTree> {
-      return this.cartFacade
+      return this.appFacade
         .getCartItems()
         .pipe(
           take(1),
@@ -32,5 +32,5 @@ export class CheckoutGuard implements CanActivate {
         );
   }
 
-  constructor(private router: Router, private cartFacade: CartFacade) {}
+  constructor(private router: Router, private appFacade: AppFacade) {}
 }

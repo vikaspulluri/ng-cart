@@ -14,16 +14,24 @@ import { BookService } from '../book.service';
 import { BookListComponent } from './book-list.component';
 import { mockBooks } from '../../../../src/test/mocks';
 import { ItemCardComponent } from '../../shared/components/item-card/item-card.component';
-import { CartFacade } from '../../cart/store/cart.facade';
-import { BookFacade } from '../store/book.facade';
-import { SearchFacade } from '../../search/store/search.facade';
 import { CommonUtilService } from '../../shared/services/common-util.service';
-import { Router } from '@angular/router';
-import { SharedFacade } from '../../shared/store/shared.facade';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { AppFacade } from '../../store/app.facade';
+import { RouterTestingModule } from '@angular/router/testing';
+import { bookRoutes } from '../book-routing.module';
+import { BookResolverService } from '../book.resolver';
+import { Book } from '../book.model';
+
+class MockBookResolver {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Book {
+    return mockBooks[0];
+  }
+}
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
   let fixture: ComponentFixture<BookListComponent>;
+  let resolver: BookResolverService;
   const initialState = {
     search: {
       searchResults: [],
@@ -34,9 +42,7 @@ describe('BookListComponent', () => {
   };
   let store: MockStore;
   let snackbarService: SnackbarService;
-  let cartFacade: CartFacade;
-  let bookFacade: BookFacade;
-  let searchFacade: SearchFacade;
+  let appFacade: AppFacade;
   let commonUtilService: CommonUtilService;
   const router = {
     navigate: jasmine.createSpy('navigate'),
@@ -49,23 +55,20 @@ describe('BookListComponent', () => {
         provideMockStore({ initialState }),
         SnackbarService,
         HttpClientTestingModule,
-        CartFacade,
-        BookFacade,
-        SearchFacade,
+        AppFacade,
         CommonUtilService,
         {provide: Router, useValue: router},
-        SharedFacade
+        {provide: BookResolverService, useClass: MockBookResolver},
       ],
-      imports: [BrowserAnimationsModule, MaterialModule],
+      imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule.withRoutes(bookRoutes)],
     }).compileComponents();
   });
 
   beforeEach(() => {
     store = TestBed.inject(MockStore);
     snackbarService = TestBed.inject(SnackbarService);
-    cartFacade = TestBed.inject(CartFacade);
-    bookFacade = TestBed.inject(BookFacade);
-    searchFacade = TestBed.inject(SearchFacade);
+    appFacade = TestBed.inject(AppFacade);
+    resolver = TestBed.inject(BookResolverService);
     commonUtilService = TestBed.inject(CommonUtilService);
     fixture = TestBed.createComponent(BookListComponent);
     component = fixture.componentInstance;
