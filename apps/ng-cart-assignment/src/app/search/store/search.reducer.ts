@@ -11,14 +11,14 @@ export interface SearchState {
   searchResults: SearchResult | null;
 }
 
-export const initialState: SearchState = {
+export const initialSearchState: SearchState = {
   searchQuery: '',
   recentQueries: [],
   searchResults: null,
 };
 
 const searchReducer = createReducer(
-  initialState,
+  initialSearchState,
   on(SearchActions.searchResults, (state, { results, query }) => ({
     ...state,
     searchResults: results,

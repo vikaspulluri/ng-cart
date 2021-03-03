@@ -6,7 +6,7 @@ import * as fromCart from './cart.reducer';
 
 describe('CartReducer', () => {
   let store: MockStore;
-  const initialState = fromCart.initialState;
+  const initialState = fromCart.initialCartState;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],

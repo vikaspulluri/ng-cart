@@ -1,10 +1,10 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from '../../store/app.reducer';
-import { SharedState } from './shared.reducer';
+import { ProgressbarState } from './shared.reducer';
 
-export const selectSharedState = (state: AppState) => state.shared;
+export const selectSharedState = (state: AppState) => state.progressbar;
 
 export const selectSharedProgressbar = createSelector(
     selectSharedState,
-    (state: SharedState) => state.progressbar
+    (state: ProgressbarState) => state.visible
 );

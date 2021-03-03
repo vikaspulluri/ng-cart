@@ -9,12 +9,12 @@ export interface CartState {
   items: { product: CartItem; quantity: number }[];
 }
 
-export const initialState: CartState = {
+export const initialCartState: CartState = {
   items: [],
 };
 
 const cartReducer = createReducer(
-  initialState,
+  initialCartState,
   on(CartActions.addItem, (state, { item }) => {
     const items = [...state.items];
     const addedProductIndex = items.findIndex(

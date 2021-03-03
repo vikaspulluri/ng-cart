@@ -15,7 +15,7 @@ describe('CollectionComponent', () => {
   let appFacade: AppFacade;
   let commonUtilService: CommonUtilService;
   const initialState = {
-    user: {}
+    order: {}
   };
 
   beforeEach(async () => {
@@ -41,7 +41,7 @@ describe('CollectionComponent', () => {
 
   it('should update the state', () => {
     const state = {
-      user: {
+      order: {
         collections: [
           {
             orderId: 'ORDER-12345',
@@ -62,6 +62,6 @@ describe('CollectionComponent', () => {
       }
     };
     store.setState(state);
-    expect(state.user.collections.length).toEqual(1);
+    expect(state.order.collections.length).toEqual(1);
   });
 });

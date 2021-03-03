@@ -24,7 +24,7 @@ describe('SidenavBarComponent', () => {
     cart: {
       items: [],
     },
-    user: {
+    order: {
       collections: [],
       addresses: [],
     },
@@ -34,16 +34,17 @@ describe('SidenavBarComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SidenavBarComponent],
       imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
-      providers: [provideMockStore({}), AppFacade],
+      providers: [provideMockStore({initialState}), AppFacade],
     });
-    store = TestBed.inject(MockStore);
     TestBed.compileComponents();
   });
 
   beforeEach(() => {
     appFacade = TestBed.inject(AppFacade);
+    store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(SidenavBarComponent);
     component = fixture.componentInstance;
+    component.ngAfterViewInit();
     fixture.detectChanges();
   });
 
@@ -51,30 +52,32 @@ describe('SidenavBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update the cart state', () => {
+  it('should update the cart state', (done) => {
     const state = {
       cart: {
         items: [{ quantity: 1, product: mockBooks[0] }],
       },
     };
-
     store.setState(state);
-
+    fixture.detectChanges();
     expect(component.navItems).toBeTruthy();
+    done();
   });
 
-  it('should update the collections state', () => {
+  it('should update the collections state', (done) => {
     const state = {
-      user: {
+      order: {
         collections: [
           {
-            collection: [{ quantity: 1, product: mockBooks[0] }],
+            items: [{ quantity: 1, product: mockBooks[0] }],
           },
         ],
       },
     };
     store.setState(state);
+    fixture.detectChanges();
     expect(component.navItems).toBeTruthy();
+    done();
   });
 
 });

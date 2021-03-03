@@ -5,7 +5,7 @@ import * as SharedActions from './shared.actions';
 
 describe('SharedReducer', () => {
   let store: MockStore;
-  const initialState = fromShared.initialState;
+  const initialState = fromShared.initialProgressbarState;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
@@ -19,7 +19,7 @@ describe('SharedReducer', () => {
       initialState,
       SharedActions.showProgressBar()
     );
-    expect(state.progressbar).toBeTrue();
+    expect(state.visible).toBeTrue();
   });
 
   it('should hide progressbar', () => {
@@ -27,6 +27,6 @@ describe('SharedReducer', () => {
       initialState,
       SharedActions.hideProgressBar()
     );
-    expect(state.progressbar).toBeFalse();
+    expect(state.visible).toBeFalse();
   });
 });

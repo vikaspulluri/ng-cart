@@ -1,5 +1,5 @@
 export const cartFeatureKey = 'cart';
 export const searchFeatureKey = 'search';
-export const userFeatureKey = 'user';
+export const orderFeatureKey = 'order';
 export const booksFeatureKey = 'books';
-export const sharedFeatureKey = 'shared';
+export const sharedFeatureKey = 'progressbar';

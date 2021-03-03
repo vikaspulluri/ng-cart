@@ -4,26 +4,25 @@ import * as SharedActions from './shared.actions';
 
 export const featurekey = sharedFeatureKey;
 
-export interface SharedState {
-  progressbar: boolean;
+export interface ProgressbarState {
+  visible: boolean;
 }
 
-export const initialState: SharedState = {
-  progressbar: false,
+export const initialProgressbarState: ProgressbarState = {
+  visible: false
 };
-
 const sharedReducer = createReducer(
-  initialState,
+  initialProgressbarState,
   on(SharedActions.showProgressBar, (state) => ({
     ...state,
-    progressbar: true,
+    visible: true,
   })),
   on(SharedActions.hideProgressBar, (state) => ({
     ...state,
-    progressbar: false,
+    visible: false,
   }))
 );
 
-export function reducer(state: SharedState | undefined, action: Action): SharedState {
+export function reducer(state: ProgressbarState | undefined, action: Action): ProgressbarState {
   return sharedReducer(state, action);
 }

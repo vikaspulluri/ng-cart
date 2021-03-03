@@ -19,14 +19,14 @@ describe('CoreComponent', () => {
   let store: MockStore;
   let appFacade: AppFacade;
   const initialState = {
-    shared: {
-      progressbar: false
+    progressbar: {
+      visible: false
     }
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CoreComponent, SidenavBarComponent],
+      declarations: [CoreComponent],
       providers: [provideMockStore({initialState}), AppFacade],
       imports: [BrowserAnimationsModule, MaterialModule, RouterTestingModule],
     }).compileComponents();
@@ -46,13 +46,13 @@ describe('CoreComponent', () => {
 
   it('should update the shared state', fakeAsync(() => {
     const state = {
-      shared: {
-        progressBar: false,
+      progressbar: {
+        visible: true,
       },
     };
     store.setState(state);
     tick();
-    expect(component.progressbar).toBeUndefined();
+    expect(component.progressbar).toBeTrue();
   }));
 
 });

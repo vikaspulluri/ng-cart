@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import * as fromUser from './order.reducer';
+import * as fromOrder from './order.reducer';
 import * as OrderActions from './order.actions';
 import { mockBooks } from '../../../test/mocks';
 
 describe('UserReducer', () => {
   let store: MockStore;
-  const initialState = fromUser.initialState;
+  const initialState = fromOrder.initialOrderState;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
@@ -29,7 +29,7 @@ describe('UserReducer', () => {
       user,
       orderId: 'ORDER-12345',
     };
-    const state = fromUser.reducer(
+    const state = fromOrder.reducer(
       initialState,
       OrderActions.addItemsToCollection(collection)
     );
@@ -44,7 +44,7 @@ describe('UserReducer', () => {
       phone: 12367890,
       address: 'some street',
     };
-    const state = fromUser.reducer(
+    const state = fromOrder.reducer(
       initialState,
       OrderActions.addAddress({ user })
     );

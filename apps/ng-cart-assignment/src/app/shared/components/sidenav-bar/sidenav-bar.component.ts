@@ -23,7 +23,7 @@ export class SidenavBarComponent implements OnInit, OnDestroy, AfterViewInit {
       this.appFacade.getAppState()
         .subscribe((appState) => {
           const cart = appState.cart;
-          const user = appState.user;
+          const order = appState.order;
           if (cart && cart.items) {
             const items = cart.items;
             const navItem = this.navItems.find(
@@ -36,8 +36,8 @@ export class SidenavBarComponent implements OnInit, OnDestroy, AfterViewInit {
               );
             }
           }
-          if (user && user.collections) {
-            const collections = user.collections;
+          if (order && order.collections) {
+            const collections = order.collections;
             const navItem = this.navItems.find(
               (item) => item.id === orderFeatureKey
             );

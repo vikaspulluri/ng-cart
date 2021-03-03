@@ -2,7 +2,7 @@ import {
   booksFeatureKey,
   cartFeatureKey,
   searchFeatureKey,
-  userFeatureKey,
+  orderFeatureKey,
 } from './shared.constants';
 
 export interface NavItem {
@@ -33,9 +33,9 @@ export const navItems: NavItem[] = [
     path: '/cart',
   },
   {
-    id: userFeatureKey,
+    id: orderFeatureKey,
     icon: 'library_books',
     label: 'My Collection',
-    path: '/order',
+    path: '/orders',
   },
 ];

@@ -9,12 +9,12 @@ export interface BookState {
   list: Book[] | null;
 }
 
-export const initialState: BookState = {
+export const initialBookState: BookState = {
   list: [],
 };
 
 const booksReducer = createReducer(
-  initialState,
+  initialBookState,
   on(BookActions.bookResults, (state, { books }) => ({
     ...state,
     list: [...books],

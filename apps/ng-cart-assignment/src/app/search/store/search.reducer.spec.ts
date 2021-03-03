@@ -6,7 +6,7 @@ import { mockBooks } from '../../../../src/test/mocks';
 
 describe('SearchReducer', () => {
   let store: MockStore;
-  const initialState = fromSearch.initialState;
+  const initialState = fromSearch.initialSearchState;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],

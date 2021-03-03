@@ -27,6 +27,8 @@
   }
 }
 .book-card {
+  height: 100%;
+  padding: .5em 1em;
   .mat-card-header {
     display: flex;
     justify-content: flex-start;
@@ -43,6 +45,11 @@
       max-width: 100%;
       text-align: center;
     }
+  }
+
+  .mat-card-actions {
+    display: flex;
+    justify-content: center;
   }
 
   .right {

@@ -24,5 +24,6 @@ describe('BookReducer', () => {
       BookActions.bookResults({books: mockBooks})
     );
     expect(state.list).toBeDefined();
+    expect(state.list).toEqual(mockBooks);
   });
 });

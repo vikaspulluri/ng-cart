@@ -1,23 +1,22 @@
 import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
-import { CartItem } from '../../cart/cart.model';
-import { userFeatureKey } from '../../shared/shared.constants';
+import { orderFeatureKey } from '../../shared/shared.constants';
 import { Collection, User } from '../order.model';
 import * as UserActions from './order.actions';
 
-export const featureKey = userFeatureKey;
+export const featureKey = orderFeatureKey;
 
 export interface OrderState {
   collections: Collection[];
   addresses: User[];
 }
 
-export const initialState: OrderState = {
+export const initialOrderState: OrderState = {
   collections: [],
   addresses: [],
 };
 
 const userReducer = createReducer(
-  initialState,
+  initialOrderState,
   on(UserActions.addItemsToCollection, (state, { items, user, orderId }) => ({
     ...state,
     collections: [{ items: [...items], user, orderId }, ...state.collections],
