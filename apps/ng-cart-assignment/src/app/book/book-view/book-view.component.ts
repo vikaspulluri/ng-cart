@@ -22,7 +22,6 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.book = this.route.snapshot.data.book;
-
     this.subscriptions.push(
       this.appFacade.getCartItems().subscribe(cartItems => {
         if (cartItems && cartItems.length) {

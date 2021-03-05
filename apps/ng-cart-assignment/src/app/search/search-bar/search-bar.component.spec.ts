@@ -34,7 +34,6 @@ describe('SearchBarComponent', () => {
     appFacade = TestBed.inject(AppFacade);
     fixture = TestBed.createComponent(SearchBarComponent);
     component = fixture.componentInstance;
-    component.label = 'Search';
     component.value = '';
     component.placeholder = 'Search';
     fixture.detectChanges();

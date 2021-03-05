@@ -1,5 +1,5 @@
 <aside>
-  <mat-card class="book-card full">
+  <mat-card class="book-card full" *ngIf="book;else noBook">
     <mat-card-header>
       <div class="left">
         <mat-card-title>{{ book.volumeInfo?.title }}</mat-card-title>

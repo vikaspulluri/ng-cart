@@ -98,4 +98,16 @@ describe('BookViewComponent', () => {
     expect(storeDispatchSpy).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['/checkout']);
   });
+
+  it('should get the book details', () => {
+    appFacade.getBook('something').subscribe(data => {
+      expect(data).toBeDefined();
+    });
+  });
+
+  it('should hide the progress bar', () => {
+    const storeDispatchSpy = spyOn(store, 'dispatch');
+    appFacade.hideProgressbar();
+    expect(storeDispatchSpy).toHaveBeenCalled();
+  });
 });

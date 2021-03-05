@@ -29,4 +29,20 @@ describe('SearchReducer', () => {
     );
     expect(state.searchResults).toBeDefined();
   });
+
+  it('should query the search results and return failed response', () => {
+    let state = fromSearch.reducer(
+      initialState,
+      SearchActions.searchQuery({ query: 'angular' })
+    );
+    state = fromSearch.reducer(
+      initialState,
+      SearchActions.searchResultsFailed({
+        error: 'Something went wrong!',
+        query: state.searchQuery
+      })
+    );
+    expect(state.searchResults).toBeDefined();
+    expect(state.searchResults).toEqual(null);
+  });
 });

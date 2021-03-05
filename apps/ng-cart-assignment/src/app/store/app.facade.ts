@@ -11,8 +11,10 @@ import * as fromSearch from '../search/store/search.selector';
 import * as fromOrder from '../order/store/order.selector';
 import * as fromShared from '../shared/store/shared.selector';
 import * as SharedActions from '../shared/store/shared.actions';
+import * as fromBook from '../book/store/book.selector';
 import { CartItem } from '../cart/cart.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { Collection, User } from '../order/order.model';
 import { SearchResult } from '../search/search.model';
 
@@ -25,6 +27,18 @@ export class AppFacade {
     // Book
     bookResults(books: Book[]): void {
         this.dispatch(BookActions.bookResults({books}));
+    }
+
+    getBook(id: string): Observable<Book | null> {
+        return this.store.select(fromBook.selectBookList).pipe(
+            map((value: Book[] | null) => {
+                if (value && Array.isArray(value)) {
+                    const book = value.find(book => book.id === id);
+                    return book || null;
+                }
+                return null;
+            })
+        );
     }
 
     // Cart

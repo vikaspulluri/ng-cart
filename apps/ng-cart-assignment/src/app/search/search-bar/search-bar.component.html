@@ -1,7 +1,7 @@
 <div class="search-bar">
   <mat-form-field>
     <mat-label>{{ placeholder }}</mat-label>
-    <input matInput #searchBox id="search" />
+    <input matInput #searchBox id="search" [value]="value" />
     <button mat-icon-button matSuffix>
       <mat-icon>search</mat-icon>
     </button>

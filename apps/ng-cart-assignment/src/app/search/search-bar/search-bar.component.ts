@@ -23,8 +23,7 @@ import { AppFacade } from '../../store/app.facade';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit, OnDestroy, AfterViewInit {
-  @Input('label') label = 'Search';
-  @Input('placeholder') placeholder: string = this.label;
+  @Input('placeholder') placeholder: string;
   @Input('value') value = '';
 
   @ViewChild('searchBox') searchBox: ElementRef<HTMLInputElement>;

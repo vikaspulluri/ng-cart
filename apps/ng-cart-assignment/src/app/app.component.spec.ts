@@ -11,9 +11,7 @@ import { CoreModule } from './core/core.module';
 import { CoreComponent } from './core/core/core.component';
 
 describe('AppComponent', () => {
-  const router = {
-    navigate: jasmine.createSpy('navigate')
-  };
+  let router: Router;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -24,9 +22,9 @@ describe('AppComponent', () => {
         CoreModule,
       ],
       declarations: [AppComponent, CoreComponent],
-      providers: [{provide: Router, useValue: router}]
+      providers: []
     }).compileComponents();
-
+    router = TestBed.inject(Router);
   });
 
   it('should create the app', () => {
@@ -42,16 +40,14 @@ describe('AppComponent', () => {
   });
 
   it('should load the lazy modules: cart', () => {
+    const routerSpy = spyOn(router, 'navigate');
     router.navigate(['/cart']);
-    expect(router.navigate).toHaveBeenCalled();
-  });
-  it('should load the lazy modules: orders', () => {
-    router.navigate(['/orders']);
-    expect(router.navigate).toHaveBeenCalled();
+    expect(routerSpy).toHaveBeenCalled();
   });
 
   it('should load the lazy modules: books', () => {
+    const routerSpy = spyOn(router, 'navigate');
     router.navigate(['/books']);
-    expect(router.navigate).toHaveBeenCalled();
+    expect(routerSpy).toHaveBeenCalled();
   });
 });
